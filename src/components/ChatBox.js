@@ -3,12 +3,17 @@ import { useGlobal } from "../GlobalContext";
 
 
 const ChatBox = () => {
-    const { sharedData } = useGlobal();
-    const [chat, setChat] = useState(sharedData);
+    const [chat, setChat] = useState(globalMessage);
+    const { globalMessage } = useGlobal();
+    const { globalFetchResult } = useGlobal();
 
     useEffect(() => {
-        setChat(sharedData);
-    }, [sharedData]);
+        setChat(prevChat => prevChat ? prevChat + '\n' + globalMessage : globalMessage);
+    }, [globalMessage]);
+
+    useEffect(() => {
+        setChat(prevChat => prevChat ? prevChat + '\n' + globalFetchResult.title : globalFetchResult.title);
+    }, [globalFetchResult]);
 
     return (
         <div>

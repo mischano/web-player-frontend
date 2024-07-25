@@ -1,30 +1,49 @@
 import React, { useState } from 'react';
 import { useGlobal } from '../GlobalContext';
+import AudioFetcher from './AudioFetcher';
+
 
 const InputContainer = () => {
-    const [text, setText] = useState('');
-    const { setSharedData } = useGlobal();
+    const [userInput, setUserInput] = useState('');
+    const [message, setMessage] = useState('');
+    const { setGlobalMessage } = useGlobal();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    /** 
+     * React state updates are sometimes optimized to ignore updates that don't actually change the state value. 
+     * Ex: User entering the same input more than once. Since the state `message` is being set to the same value, 
+     * re-render is not being triggered. To ensure re-mount and re-render are triggered even if the same data is 
+     * entered, we use unique key that will help us to re-mount and re-render.  
+    **/
+    const [key, setKey] = useState(0);  
 
     const handleChange = (event) => {
-        setText(event.target.value);
+        setUserInput(event.target.value);
     };
 
     const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {  
-            setSharedData(text);         
+        if (event.key === 'Enter') {
+            setMessage(userInput);
+            setGlobalMessage(userInput);
+            setUserInput('');
+            event.preventDefault();
+            setKey(prevKey => prevKey + 1);
         }
     };
 
     return (
         <div>
         <textarea
-            value={text}
+            value={userInput}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="Type the name of the song and the artist, and hit `Enter`."
             rows="4"
             cols="50"
         />
+        <AudioFetcher setLoading={setLoading} setError={setError} key={key} message={message}/>
+        {loading && <p>loading...</p>}
+        {error && <p>Error: {error}</p>}
         </div>
     );
 };
