@@ -4,18 +4,25 @@ import { useGlobal } from "../GlobalContext";
 
 const AudioFetcher = ({ setLoading, setError, message }) => {
   const { setGlobalFetchResult } = useGlobal();
+  const { setGlobalErrorMessage } = useGlobal();
 
   useEffect(() => {
     if (message) {
       const audioFetcher = async () => {
         setLoading(true);
-        setError(null);
+        // setError(null);
+        setGlobalErrorMessage('');
 
         try {
           const fetchResult = await fetchAudio(message);
-          setGlobalFetchResult(fetchResult);
+          if (fetchResult.error) {
+            setGlobalErrorMessage('Failed to fetch the requested audio.');
+          } else {
+            setGlobalFetchResult(fetchResult);
+          }
         } catch (err) {
-          setError(err.message);
+          // setError(err.message);
+          setGlobalErrorMessage(err.message);
         } finally {
           setLoading(false);
         }
@@ -38,8 +45,8 @@ const fetchAudio = async (requestedAudio) => {
     });
     return response.data;
   } catch (err) {
-    console.error('Error fetching data:', err);  // Log the error for debugging
-    throw new Error('Error fetching data');  // Throw the error to be caught in the component
+    console.error('Error fetching data:', err);  
+    throw new Error('Failed to fetch the requested data.');  
   }
 }
 

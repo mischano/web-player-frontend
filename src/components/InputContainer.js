@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useGlobal } from '../GlobalContext';
 import AudioFetcher from './AudioFetcher';
 
@@ -17,14 +17,24 @@ const InputContainer = () => {
     **/
     const [key, setKey] = useState(0);  
 
+    useEffect(() => {
+        if (loading) {
+            setUserInput('Loading...');
+        } else {
+            setUserInput('');
+        }
+    }, [loading]);
+
     const handleChange = (event) => {
         setUserInput(event.target.value);
     };
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            setMessage(userInput);
-            setGlobalMessage(userInput);
+            if (userInput.trim().length > 0) {
+                setMessage(userInput);
+                setGlobalMessage(userInput);
+            }
             setUserInput('');
             event.preventDefault();
             setKey(prevKey => prevKey + 1);
@@ -34,15 +44,15 @@ const InputContainer = () => {
     return (
         <div>
         <textarea
-            value={userInput}
+            value={userInput} 
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="Type the name of the song and the artist, and hit `Enter`."
             rows="4"
             cols="50"
+            readOnly={loading}
         />
         <AudioFetcher setLoading={setLoading} setError={setError} key={key} message={message}/>
-        {loading && <p>loading...</p>}
         {error && <p>Error: {error}</p>}
         </div>
     );
