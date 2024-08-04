@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useGlobal } from '../GlobalContext';
 import AudioFetcher from './AudioFetcher';
+import "./InputContainer.css";
 
 
 const InputContainer = () => {
@@ -42,18 +43,18 @@ const InputContainer = () => {
     };
 
     return (
-        <div>
-        <textarea
-            value={userInput} 
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Type the name of the song and the artist, and hit `Enter`."
-            rows="4"
-            cols="50"
-            readOnly={loading}
-        />
-        <AudioFetcher setLoading={setLoading} setError={setError} key={key} message={message}/>
-        {error && <p>Error: {error}</p>}
+        <div id="input-container-outter">
+            <textarea id="input-container-inner"
+                value={userInput} 
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder="Type the name of the song and the artist, and hit `Enter`."
+                rows="4"
+                cols="50"
+                readOnly={loading}
+            />
+            <AudioFetcher setLoading={setLoading} setError={setError} key={key} message={message}/>
+            {error && <p>Error: {error}</p>}
         </div>
     );
 };

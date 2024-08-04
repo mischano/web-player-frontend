@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGlobal } from "../GlobalContext";
+import './ChatBox.css';
 
 
 const ChatBox = () => {
@@ -38,13 +39,13 @@ const ChatBox = () => {
     }
 
     return (
-        <div>
-        <textarea
-            value={chat}
-            rows="10"
-            cols="40"
-            readOnly
-        />
+        <div id="chat-box-outter">
+                <textarea id="chat-box-inner"
+                    value={chat}
+                    rows="10"
+                    cols="40"
+                    readOnly
+                />
         </div>
     );
 }

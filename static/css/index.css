@@ -1,7 +1,34 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #790505;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  /* Gradient background transitioning from dark blue to lighter blue */
+  /* background: linear-gradient(135deg, #29323c, #485563); */
+  background: linear-gradient(135deg, #29323c, #485563);
+  margin: 0;
+  padding: 0;
+  color: #fff; /* Optional: Set text color to white for better contrast */
+}
+/* Styling for the textarea */
+/* General textarea styles */
+textarea {
+  width: 50%;
+  height: 10%;
+  border: 0px solid #ccc; /* Default border */
+  border-radius: 16px; /* Rounded corners */
+  padding: 10px; /* Padding inside the textarea */
+  font-size: 14px; /* Font size */
+  font-family: Arial, sans-serif; /* Font family */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  resize: none; /* Allow vertical resizing only */
+  overflow: auto; /* Add scrollbars if needed */
+  line-height: 1.5; /* Line height for readability */
+  background-color: #fff; /* Background color */
+  color: #333; /* Text color */
+}
+
+/* Optional: Add styles for focus state */
+textarea:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional: Add shadow on focus */
+}
+
