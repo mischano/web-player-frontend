@@ -8,7 +8,12 @@ export function GlobalProvider({ children }) {
     const [globalErrorMessage, setGlobalErrorMessage] = useState('');
 
     return (
-        <GlobalContext.Provider value={{ globalMessage, setGlobalMessage, globalFetchResult, setGlobalFetchResult, globalErrorMessage, setGlobalErrorMessage }}>
+        <GlobalContext.Provider value=
+        {{ 
+            globalMessage, setGlobalMessage, 
+            globalFetchResult, setGlobalFetchResult, 
+            globalErrorMessage, setGlobalErrorMessage 
+        }}>
             {children}
         </GlobalContext.Provider>
     );

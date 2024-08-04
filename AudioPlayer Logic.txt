@@ -1,0 +1,26 @@
+* globalFetchResult is received:
+   ** Add globalFetchResult to playlist.
+
+* If audio is playing:
+   ** Return.
+* If audio is not playing:
+   ** setCurrentAudio(playlist[0])
+   ** removeFromPlaylist(playlist[0])
+* If audio has ended playing:
+   ** If playlist is empty:
+      *** set isAudioIsPlaying to False.
+      *** set currentAudio to ''.
+   ** 
+
+* globalFetchResult is changed:
+   ** Update the playlist.
+   ** Reset the globalFetchResult.
+
+* playlist is changed: 
+   ** If playlist is empty or audio is playing is false:
+      Return.
+   ** Else:
+      Set the current audio to playlist[0].
+      Set the audio is playing to true.
+      Remove the playlist[0] element from the list. 
+      

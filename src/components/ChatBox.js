@@ -3,8 +3,9 @@ import { useGlobal } from "../GlobalContext";
 
 
 const ChatBox = () => {
-    const { globalMessage, globalFetchResult, globalErrorMessage } = useGlobal();
-    const { setGlobalMessage, setGlobalFetchResult, setGlobalErrorMessage } = useGlobal();
+    const { globalMessage, setGlobalMessage } = useGlobal();
+    const { globalErrorMessage, setGlobalErrorMessage } = useGlobal();
+    const { globalFetchResult } = useGlobal();
     const [chat, setChat] = useState(globalMessage);
 
     useEffect(() => {
@@ -18,43 +19,13 @@ const ChatBox = () => {
             setGlobalMessage('');
         }
         if (globalFetchResult && !globalFetchResult.error) {
-            console.log(globalFetchResult.error);
             handleChange(globalFetchResult.title);
-            setGlobalFetchResult('');
         }
         if (globalErrorMessage && globalErrorMessage.length > 0) {
             setGlobalErrorMessage('');
             handleChange(globalErrorMessage);
         }
     }, [globalMessage, globalFetchResult, globalErrorMessage])
-    
-    // const { globalMessage } = useGlobal();
-    // const { globalFetchResult } = useGlobal();
-    // const { globalErrorMessage } = useGlobal();
-    // useEffect(() => {
-    //     if (globalMessage.length == 0) {
-    //         return;
-    //     }
-    //     const message = stampTime(globalMessage);
-    //     setChat(prevChat => prevChat ? prevChat + '\n' + message : message);
-    // }, [globalMessage]);
-
-    // useEffect(() => {
-    //     /** Create an edge case to handle 'error'! **/
-    //     if (globalFetchResult.length == 0) {
-    //         return;
-    //     }
-    //     const message = stampTime(globalFetchResult.title);
-    //     setChat(prevChat => prevChat ? prevChat + '\n' + message : message);
-    // }, [globalFetchResult]);
-
-    // useEffect(() => {
-    //     if (globalErrorMessage.length == 0) {
-    //         return;
-    //     }
-    //     const message = stampTime(globalErrorMessage);
-    //     setChat(prevChat => prevChat ? prevChat + '\n' + message : message);
-    // }, [globalErrorMessage]);
 
     const stampTime = (message) => {
         const now = new Date();
