@@ -12,30 +12,31 @@ const ChatBox = () => {
     useEffect(() => {
         const handleChange = (change) => {
             const message = stampTime(change);
-            setChat(prevChat => prevChat ? prevChat + '\n\n' + message : message);
+            setChat(prevChat => prevChat ? prevChat + '\n' + message : message);
         }
 
         if (globalMessage && globalMessage.length > 0) {
-            handleChange(globalMessage);
+            handleChange(`Requested: ${globalMessage}`);
             setGlobalMessage('');
         }
         if (globalFetchResult && !globalFetchResult.error) {
-            handleChange(globalFetchResult.title);
+            handleChange(`Added: ${globalFetchResult.title}`);
         }
         if (globalErrorMessage && globalErrorMessage.length > 0) {
             setGlobalErrorMessage('');
-            handleChange(globalErrorMessage);
+            handleChange(`Error: ${globalErrorMessage}`);
         }
     }, [globalMessage, globalFetchResult, globalErrorMessage])
 
     const stampTime = (message) => {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        });
-        return `${timeString}: ${message}`;
+        // const now = new Date();
+        // const timeString = now.toLocaleTimeString('en-US', {
+        //     hour: '2-digit',
+        //     minute: '2-digit',
+        //     hour12: true
+        // });
+        // return `$${timeString}: ${message}`;
+        return `$: ${message}`;
     }
 
     return (

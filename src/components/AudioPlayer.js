@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGlobal } from "../GlobalContext";
-import ReactPlayer from "react-player"
+import ReactPlayer from "react-player";
+import "./AudioPlayer.css";
 
 
 const AudioPlayer = () => {
@@ -47,18 +48,22 @@ const AudioPlayer = () => {
                 playing={isAudioPlaying}
                 onEnded={playNextAudio}
             />
-            <textarea
-                value={formattedPlaylist}
-                rows="20"
-                cols="40"
-                readOnly
-            />
-            <textarea
-                value={currentAudio ? currentAudio.title : ''}
-                rows="10"
-                cols="20"
-                readOnly
-            />
+            <div id="player-outter-upper">
+                <textarea id="player-inner-upper"
+                    value={currentAudio ? `Current audio:\n${currentAudio.title}` : ''}
+                    rows="10"
+                    cols="20"
+                    readOnly
+                />
+            </div>
+            <div id="player-outter-lower">
+                <textarea id="player-inner-lower"
+                    value={formattedPlaylist ? `Playlist:\n${formattedPlaylist}` : ''}
+                    rows="20"
+                    cols="40"
+                    readOnly
+                />
+            </div>
         </div>
     )
 };

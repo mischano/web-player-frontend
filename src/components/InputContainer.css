@@ -1,26 +1,34 @@
-#input-container-outter {
+#input-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #29323c, #485563);
-    border-radius: 0px; 
-    height: 3vh;
-    width: 55%;
+    align-items: center; /* Aligns items vertically in the center */
+    border-radius: 20px;
+    height: 6vh;
+    width: 45%;
     margin-top: 10px;
-    left: 0.5%;
-    position: relative;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 10px;
+    background: #ddd6d6;
+    color: #080303;
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding is included in width/height */
 }
 
-#input-container-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px; 
-    position: absolute;
-    bottom: 0;
-    background: #d6d3d3; 
-    color: #080303;
-    font-family: 'Fira Code', monospace;
-    overflow: auto; 
-    box-sizing: border-box;
+#input-container input, #input-container textarea {
+    width: 100%; /* Take full width of the container */
+    height: auto; /* Adjust height based on content */
+    border: none; /* Remove border if you don't want it */
+    background: transparent; /* Use the container's background */
+    color: inherit; /* Use the container's text color */
+    outline: none; /* Remove the outline on focus */
+    padding: 5; /* Remove padding on the input itself */
+    line-height: 1.5; /* Adjust line height to match the design */
 }
+
+#input-container textarea {
+    height: calc(100% - 20px); /* Adjust textarea height considering padding */
+    resize: none; /* Prevent resizing */
+    overflow-y: hidden; /* Hide overflow */
+}
+

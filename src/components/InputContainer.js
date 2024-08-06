@@ -43,8 +43,8 @@ const InputContainer = () => {
     };
 
     return (
-        <div id="input-container-outter">
-            <textarea id="input-container-inner"
+        <div>
+            <textarea id="input-container"
                 value={userInput} 
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

@@ -2,25 +2,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #29323c, #485563);
-    border-radius: 0px; 
-    height: 55vh;
+    height: 80vh;
     width: 55%;
-    margin-top: 10px;
-    left: 0.5%;
     position: relative;
+    margin-top: 100px;
+    left: 40%;
+    transform: translate(-50%, 0); /* Center horizontally */
+    bottom: 0;
 }
 
-#chat-box-inner     {
+#chat-box-inner {
     width: 100%;
     height: 100%;
-    border-radius: 0px; 
-    position: absolute;
-    bottom: 0;
-    background: #000000; 
-    color: #ece7e7c2;
-    font-family: 'Fira Code', monospace;
-    overflow: auto; 
-    box-sizing: border-box;
+    position: relative; /* Change to relative unless absolute is needed */
+    background: #211d1b;
+    color: #d3c7c7e0; /* Slightly transparent color */
+    padding: 40px;
 }
