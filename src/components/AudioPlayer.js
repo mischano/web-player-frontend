@@ -47,18 +47,33 @@ const AudioPlayer = () => {
                 url={currentAudio ? currentAudio.url : null}
                 playing={isAudioPlaying}
                 onEnded={playNextAudio}
+                controls={false}
+                width="1%"
+                height="1%"
             />
-            <div id="player-outter-upper">
-                <textarea id="player-inner-upper"
-                    value={currentAudio ? `Current audio:\n${currentAudio.title}` : ''}
+            <div id="current-audio-box">
+                <textarea id="current-audio-title"
+                    value={currentAudio ? 'Current Audio:' : ''}
+                    rows="10"
+                    cols="20"
+                    readOnly
+                />
+                <textarea id="current-audio"
+                    value={currentAudio ? `${currentAudio.title}` : ''}
                     rows="10"
                     cols="20"
                     readOnly
                 />
             </div>
-            <div id="player-outter-lower">
-                <textarea id="player-inner-lower"
-                    value={formattedPlaylist ? `Playlist:\n${formattedPlaylist}` : ''}
+            <div id="playlist-box">
+                <textarea id="playlist-title"
+                    value={formattedPlaylist ? 'Playlist:' : ''}
+                    rows="20"
+                    cols="40"
+                    readOnly
+                />
+                <textarea id="playlist-content"
+                    value={formattedPlaylist ? formattedPlaylist : ''}
                     rows="20"
                     cols="40"
                     readOnly

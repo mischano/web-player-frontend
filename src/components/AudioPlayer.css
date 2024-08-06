@@ -1,33 +1,58 @@
-#player-outter-upper {
+#current-audio-box {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
     height: 12vh;
     width: 30%;
-    top: 9%;
+    top: 15%;
     right: 1%;
     position: fixed;
 }
 
-#player-outter-lower {
+#playlist-box {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 64vh;
     width: 30%;
-    top: calc(9% + 10vh + 2%); /* Adjust top to create space between elements */
+    top: calc(15% + 9.5vh + 2%); 
     right: 1%;
     position: fixed;
 }
 
-#player-inner-upper,
-#player-inner-lower {
+#current-audio-title {
     width: 100%;
-    height: 100%;
+    flex: 0 0 20%;
     border-radius: 0px;
-    position: relative; /* Change to relative unless absolute is needed */
-    /* background: #943302; */
+    background: #211d1b;
+    color: #519975;
+}
+
+#current-audio {
+    width: 100%;
+    flex: 0 0 80%;
+    border-radius: 0px;
+    position: relative;
     background: #211d1b;
     color: #d3c7c7e0;
-    padding: 40px;
+}
+
+#playlist-title{
+    width: 100%;
+    flex: 0 0 4%;
+    border-radius: 0px;
+    position: relative;
+    background: #211d1b;
+    color: #519975;
+}
+#playlist-content{
+    width: 100%;
+    flex: 0 0 96%;
+    border-radius: 0px;
+    position: relative; 
+    background: #211d1b;
+    color: #d3c7c7e0;
+    padding: 0px;
 }
