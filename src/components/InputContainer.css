@@ -1,34 +1,19 @@
-#input-container {
-    display: flex;
-    align-items: center; /* Aligns items vertically in the center */
-    border-radius: 20px;
-    height: 6vh;
-    width: 45%;
-    margin-top: 10px;
+#text-input {
     position: fixed;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 10px;
-    background: #ddd6d6;
-    color: #080303;
+    bottom: 1%;
+    left: 1%;
+    width: 100%;
+    max-width: 30vw;
+    height: 50px;
+    max-height: 5%;
+    box-sizing: 10px;
     padding: 10px;
-    box-sizing: border-box; /* Ensures padding is included in width/height */
+    border-radius: 20px;
+    resize: none;
+    overflow-y: hidden;
+    outline: none;
+    font-family: 'Fira Code', monospace;
+    background-color: #2121211e;
+    color: #ffffffb6;
+    outline: 1px solid #706969;
 }
-
-#input-container input, #input-container textarea {
-    width: 100%; /* Take full width of the container */
-    height: auto; /* Adjust height based on content */
-    border: none; /* Remove border if you don't want it */
-    background: transparent; /* Use the container's background */
-    color: inherit; /* Use the container's text color */
-    outline: none; /* Remove the outline on focus */
-    padding: 5; /* Remove padding on the input itself */
-    line-height: 1.5; /* Adjust line height to match the design */
-}
-
-#input-container textarea {
-    height: calc(100% - 20px); /* Adjust textarea height considering padding */
-    resize: none; /* Prevent resizing */
-    overflow-y: hidden; /* Hide overflow */
-}
-

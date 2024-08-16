@@ -1,4 +1,4 @@
-#chat-box-outter {
+/* #chat-box-outter {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,15 +7,15 @@
     position: relative;
     margin-top: 100px;
     left: 40%;
-    transform: translate(-50%, 0); /* Center horizontally */
+    transform: translate(-50%, 0); 
     bottom: 0;
 }
 
 #chat-box-inner {
     width: 100%;
     height: 100%;
-    position: relative; /* Change to relative unless absolute is needed */
+    position: relative; 
     background: #211d1b;
-    color: #d3c7c7e0; /* Slightly transparent color */
+    color: #d3c7c7e0; 
     padding: 40px;
-}
+} */

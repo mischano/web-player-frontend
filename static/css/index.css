@@ -1,33 +1,16 @@
-body {
-  background-color: #211d1b; 
+html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  /* padding: 0;
+  overflow: hidden;  */
 }
 
-/* Remove the outline (focus ring) */
-input, textarea, button {
-  outline: none;
-}
-
-/* Remove the box-shadow that causes the "glow" effect */
-input:focus, textarea:focus, button:focus {
-  box-shadow: none;
-}
-
-textarea {
-  width: 100%;
+#root {
   height: 100%;
-  border: 0px solid #ccc; /* Default border */
-  border-radius: 16px; /* Rounded corners */
-  background-color: #fff; /* Background color */
-  color: #333; /* Text color */
-  font-size: 14px; /* Font size */
-  font-family: 'Fira Code', monospace; /* Font family */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  line-height: 1.5; 
-  resize: none; /* Allow vertical resizing only */
-  overflow: hidden; /* Add scrollbars if needed */
-  overflow-y: scroll;
-  scrollbar-width: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000; 
+  font-family: 'Fire Code', monospace;
 }
