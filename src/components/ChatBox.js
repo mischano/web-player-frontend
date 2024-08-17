@@ -3,34 +3,8 @@ import { Typography, Paper } from "@mui/material";
 import { useGlobal } from "../GlobalContext";
 import { styled } from "@mui/system";
 import { v4 as uuidv4 } from "uuid";
-import { ReactTyped as Typed } from "react-typed";
+import { ReactTyped } from "react-typed";
 import './ChatBox.css';
-
-const MemoizedChatItem = memo(({ chatItem }) => (
-    <Typography
-        variant="body1"
-        key={chatItem.id}
-        sx={{
-            width: '90%',
-            margin: '0 auto',
-            marginLeft: '-3px',
-            whiteSpace: 'pre-wrap',
-            wordBreak: 'break-word',
-            padding: '2px',
-            color: chatItem.color,
-            lineHeight: 1.2,
-            fontFamily: 'Fira Code, monospace',
-            fontSize: '14px',
-        }}
-    >
-        <Typed
-            strings={[chatItem.text]}
-            typeSpeed={100}
-            backSpeed={50}
-            loop={false}
-        />
-    </Typography>
-));
 
 
 const ChatBox = () => {
@@ -38,28 +12,82 @@ const ChatBox = () => {
     const { globalErrorMessage, setGlobalErrorMessage } = useGlobal();
     const { globalFetchResult } = useGlobal();
     const [chat, setChat] = useState([]);
-
-    const red ='#ef5350';
-    const white ='#ffffffb6';
+    const [oldChatSize, setOldChatSize] = useState(0);
 
     const paperRef = useRef();
     
+    let red ='#ef5350';
+    let white ='#ffffffb6';
+    let green = '#26a69a';
+    let blue = '#29b6f6';
+
+    // useEffect(() => {
+    //     let red ='#ef5350';
+    //     let white ='#ffffffb6';
+
+    //     const handleChange = (message) => {
+    //         const timeStamp = getTime();
+    //         console.log(message);
+    //         setChat(prevChat => [
+    //                 ...prevChat,
+    //                 { id: uuidv4(), content: timeStamp, color: red },
+    //                 { id: uuidv4(), content: message, color: white }
+    //             ]);
+    //         chat.map((item, index) => (
+    //             console.log(`${index}: ${item.content}\n`)
+    //         ))
+    //     };
+        
+        
+    //     if (globalMessage && globalMessage.length > 0) {
+    //         // console.log(`message: ${globalMessage}`);
+    //         handleChange(`$ ${globalMessage}\n\n`);
+    //         setGlobalMessage('');
+    //     }
+    //     if (globalFetchResult && !globalFetchResult.error) {
+    //         // console.log(`fetch: ${globalFetchResult.title}`);
+    //         handleChange(`$ Added: ${globalFetchResult.title}`)
+    //     }
+    // }, [globalMessage, globalFetchResult, globalErrorMessage, setGlobalMessage])
+    // useEffect(() => {
+        // setChatSize(chat.length);
+        // console.log(chat.length);
+        // chat.map((item, idx) => (
+        //     console.log(`${idx}: ${item.content}\n`)
+        // ))
+        // console.log('------------------');
+    // }, [chat]);
+
+
     useEffect(() => {
-        const handleChange = (prompt, message, promptColor) => {
-            setChat(prevChat => [
-                    ...prevChat,
-                    { id: uuidv4(), text: prompt, color: promptColor },
-                    { id: uuidv4(), text: `${message}\n\n`, color: white }
-                ]);
-        };
-        
-        const time = getTime();
-        
         if (globalMessage && globalMessage.length > 0) {
-            handleChange(time, `$ ${globalMessage}`, red);
+            let timeStamp = getTime();
+            let cleanedMessage = globalMessage.replace(new RegExp('&', 'g'), 'and');
+
+            setOldChatSize(chat.length);
+            setChat(prevChat => [
+                ...prevChat, 
+                {id: uuidv4(), content: 'Requested:', size: '14px', weight: 'bold', color: green},
+                {id: uuidv4(), content: cleanedMessage, size: '14px', weight: 'normal', color: white}
+            ]);
             setGlobalMessage('');
         }
-    }, [globalMessage, globalFetchResult, globalErrorMessage])
+
+    }, [globalMessage, setGlobalMessage]);
+
+    useEffect(() => {
+        if (globalFetchResult && !globalFetchResult.error) {
+            const timeStamp = getTime();
+            let cleanedMessage = `${globalFetchResult.title.replace(new RegExp('&', 'g'), 'and')}\n\n`;
+            
+            setOldChatSize(chat.length);
+            setChat(prevChat => [
+                ...prevChat,
+                {id: uuidv4(), content: 'Added:', size: '14px', weight: 'bold', color: blue},
+                {id: uuidv4(), content: cleanedMessage, size: '14px', weight: 'normal', color: white}
+            ]);
+        }
+    }, [globalFetchResult]);
 
     useEffect(() => {
         paperRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -119,35 +147,40 @@ const ChatBox = () => {
                 padding: '10px',
             }}   
         >
-            {chat.map((chatItem, index) => (
-                <Typography
-                    variant="body1"
-                    key={chatItem.id}
-                    sx={{
-                        width: '90%',
-                        margin: '0 auto',
-                        marginLeft: '-3px',
-                        whiteSpace: 'pre-wrap',
-                        wordBreak: 'break-word',
-                        padding: '2px',
-                        color: chatItem.color,
-                        lineHeight: 1.2,
-                        fontFamily: 'Fira Code, monospace',
-                        fontSize: '14px',
-                    }}
-                >
-                    {index === chat.length - 1 ? (
-                        <Typed
-                            strings={[chatItem.text]}
-                            typeSpeed={50}
-                            backSpeed={50}
-                            loop={false}
-                        />
-                    ) : (
-                        chatItem.text
-                    )}
-                </Typography>
-            ))}
+            {chat.length > oldChatSize ? (
+                chat.map((chatItem, index) => (
+                    <Typography
+                        variant="body1"
+                        key={chatItem.id}
+                        sx={{
+                            width: '90%',
+                            margin: '0 auto',
+                            marginLeft: '-3px',
+                            whiteSpace: 'pre-wrap',
+                            wordBreak: 'break-word',
+                            padding: '2px',
+                            color: chatItem.color,
+                            lineHeight: 1.2,
+                            fontFamily: 'Fira Code, monospace',
+                            fontSize: chatItem.size,
+                            fontWeight: chatItem.weight,
+                            overflowY: 'auto',
+                        }}
+                    >
+                        {index === chat.length - 1 ? (
+                            <ReactTyped
+                                key={chatItem.id}
+                                strings={[chatItem.content]}
+                                typeSpeed={5}
+                                backSpeed={5}
+                                loop={false}
+                            />
+                        ) : (
+                            chatItem.content
+                        )}
+                    </Typography>
+                ))
+            ) : null }
         </CustomPaper> 
     );
 };
