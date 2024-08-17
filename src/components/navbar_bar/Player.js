@@ -89,6 +89,7 @@ const Player = () => {
                         alignItems: 'top',
                         fontSize: { xs: 15, sm: 20, md: 25, lg: 35 },
                         height: '100%',
+                        color: '#d7ccc8',
                     }}
                 >
                     <IconButton 

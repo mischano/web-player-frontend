@@ -1,34 +1,37 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import { Typography, Paper } from "@mui/material";
 import { useGlobal } from "../GlobalContext";
 import { styled } from "@mui/system";
+import { v4 as uuidv4 } from "uuid";
+import { ReactTyped as Typed } from "react-typed";
 import './ChatBox.css';
 
+const MemoizedChatItem = memo(({ chatItem }) => (
+    <Typography
+        variant="body1"
+        key={chatItem.id}
+        sx={{
+            width: '90%',
+            margin: '0 auto',
+            marginLeft: '-3px',
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            padding: '2px',
+            color: chatItem.color,
+            lineHeight: 1.2,
+            fontFamily: 'Fira Code, monospace',
+            fontSize: '14px',
+        }}
+    >
+        <Typed
+            strings={[chatItem.text]}
+            typeSpeed={100}
+            backSpeed={50}
+            loop={false}
+        />
+    </Typography>
+));
 
-function TypedText({ text, speed = 300 }) {
-    const [typedText, setTypedText] = useState('');
-    
-    useEffect(() => {
-        let index = 0;
-
-        const interval = setInterval(() => {
-            setTypedText((prev) => prev + text[index]);
-            index += 1;
-
-            if (index === text.length) {
-                clearInterval(interval);
-            }
-        }, speed);
-
-        return () => clearInterval(interval);
-    }, [text, speed]);
-
-    return (
-        <div>
-            {typedText}
-        </div>
-    );
-}
 
 const ChatBox = () => {
     const { globalMessage, setGlobalMessage } = useGlobal();
@@ -40,44 +43,28 @@ const ChatBox = () => {
     const white ='#ffffffb6';
 
     const paperRef = useRef();
-
+    
     useEffect(() => {
         const handleChange = (prompt, message, promptColor) => {
             setChat(prevChat => [
                     ...prevChat,
-                    { text: prompt, color: promptColor },
-                    { text: `${message}\n\n`, color: white }
+                    { id: uuidv4(), text: prompt, color: promptColor },
+                    { id: uuidv4(), text: `${message}\n\n`, color: white }
                 ]);
         };
+        
         const time = getTime();
         
         if (globalMessage && globalMessage.length > 0) {
             handleChange(time, `$ ${globalMessage}`, red);
             setGlobalMessage('');
         }
-        if (globalFetchResult && !globalFetchResult.error) {
-            handleChange('Added:', globalFetchResult.title);
-        }
-        if (globalErrorMessage && globalErrorMessage.length > 0) {
-            handleChange('Error:', globalErrorMessage);
-            setGlobalErrorMessage('');
-        }
     }, [globalMessage, globalFetchResult, globalErrorMessage])
-
 
     useEffect(() => {
         paperRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [chat]);
 
-    const getTime = () => {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        });
-        return timeString;
-    }
     const CustomPaper = styled(Paper)({
          /* Customizing the scrollbar track */
         '::-webkit-scrollbar-track': {
@@ -104,6 +91,16 @@ const ChatBox = () => {
         },
     });
 
+    const getTime = () => {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+        return timeString;
+    }
+
     return (
         <CustomPaper
             sx={{ 
@@ -123,9 +120,9 @@ const ChatBox = () => {
             }}   
         >
             {chat.map((chatItem, index) => (
-                <Typography 
-                    variant="body1" 
-                    key={index}
+                <Typography
+                    variant="body1"
+                    key={chatItem.id}
                     sx={{
                         width: '90%',
                         margin: '0 auto',
@@ -134,19 +131,26 @@ const ChatBox = () => {
                         wordBreak: 'break-word',
                         padding: '2px',
                         color: chatItem.color,
-                        marginBottom: index === chat.length - 1? '0' : '2px',
                         lineHeight: 1.2,
                         fontFamily: 'Fira Code, monospace',
                         fontSize: '14px',
                     }}
                 >
-                    {/* {chatItem.text} */}
-                    <TypedText text={chatItem.text} speed={300} />
+                    {index === chat.length - 1 ? (
+                        <Typed
+                            strings={[chatItem.text]}
+                            typeSpeed={50}
+                            backSpeed={50}
+                            loop={false}
+                        />
+                    ) : (
+                        chatItem.text
+                    )}
                 </Typography>
             ))}
-            <div ref={paperRef} />
-        </CustomPaper>
+        </CustomPaper> 
     );
-}
+};
 
 export default ChatBox;
+ 
