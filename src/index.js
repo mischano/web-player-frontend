@@ -4,7 +4,7 @@ import ChatBox from './components/ChatBox';
 import InputContainer from './components/InputContainer';
 import { GlobalProvider } from './GlobalContext';
 // import AudioPlayer from './components/AudioPlayer'
-import Player from './components/navbar_bar/Player';
+import PlayerLogic from './components/PlayerLogic';
 import '../static/css/index.css';
 // import { Input } from '@mui/material';
 
@@ -16,6 +16,6 @@ root.render(
     <GlobalProvider>
         <InputContainer />
         <ChatBox />
-        <Player />
+        <PlayerLogic />
     </GlobalProvider>
 );

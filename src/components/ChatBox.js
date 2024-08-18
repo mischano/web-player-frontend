@@ -21,47 +21,8 @@ const ChatBox = () => {
     let green = '#26a69a';
     let blue = '#29b6f6';
 
-    // useEffect(() => {
-    //     let red ='#ef5350';
-    //     let white ='#ffffffb6';
-
-    //     const handleChange = (message) => {
-    //         const timeStamp = getTime();
-    //         console.log(message);
-    //         setChat(prevChat => [
-    //                 ...prevChat,
-    //                 { id: uuidv4(), content: timeStamp, color: red },
-    //                 { id: uuidv4(), content: message, color: white }
-    //             ]);
-    //         chat.map((item, index) => (
-    //             console.log(`${index}: ${item.content}\n`)
-    //         ))
-    //     };
-        
-        
-    //     if (globalMessage && globalMessage.length > 0) {
-    //         // console.log(`message: ${globalMessage}`);
-    //         handleChange(`$ ${globalMessage}\n\n`);
-    //         setGlobalMessage('');
-    //     }
-    //     if (globalFetchResult && !globalFetchResult.error) {
-    //         // console.log(`fetch: ${globalFetchResult.title}`);
-    //         handleChange(`$ Added: ${globalFetchResult.title}`)
-    //     }
-    // }, [globalMessage, globalFetchResult, globalErrorMessage, setGlobalMessage])
-    // useEffect(() => {
-        // setChatSize(chat.length);
-        // console.log(chat.length);
-        // chat.map((item, idx) => (
-        //     console.log(`${idx}: ${item.content}\n`)
-        // ))
-        // console.log('------------------');
-    // }, [chat]);
-
-
     useEffect(() => {
         if (globalMessage && globalMessage.length > 0) {
-            let timeStamp = getTime();
             let cleanedMessage = globalMessage.replace(new RegExp('&', 'g'), 'and');
 
             setOldChatSize(chat.length);
@@ -145,6 +106,7 @@ const ChatBox = () => {
                 borderRadius: '20px',
                 overflowY: 'auto',
                 padding: '10px',
+                outline: 'solid 2px #706969',
             }}   
         >
             {chat.length > oldChatSize ? (
