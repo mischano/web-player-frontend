@@ -13,7 +13,8 @@ export const appBarStyles = {
         minHeight: '1vh',
         right: '0%',
         padding: 0,
-        margin: 0
+        margin: 0,
+        // outline: 'solid 2px #706969',
     },
 };
 

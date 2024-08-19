@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ChatBox from './components/ChatBox';
+import ChatBoxLogic from './components/ChatBoxLogic';
 import InputContainer from './components/InputContainer';
 import { GlobalProvider } from './GlobalContext';
 // import AudioPlayer from './components/AudioPlayer'
@@ -15,7 +15,7 @@ const root = createRoot(container);
 root.render(
     <GlobalProvider>
         <InputContainer />
-        <ChatBox />
+        <ChatBoxLogic />
         <PlayerLogic />
     </GlobalProvider>
 );

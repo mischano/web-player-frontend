@@ -19,6 +19,8 @@ const Player = ({
     isShuffle,
     isRepeatOn,
     handlePlayPause,
+    handlePrevious,
+    handleNext,
     handleShuffle,
     handleRepeat,
     handleMute,
@@ -46,13 +48,13 @@ const Player = ({
                     <IconButton onClick={handleShuffle} color='inherit' aria-label={isShuffle ? 'shuffleOn' : 'shuffleOff'} sx={iconButtonStyles}>
                         {renderShuffleIcon()}
                     </IconButton>
-                    <IconButton color='inherit' aria-label='Previous' sx={iconButtonStyles}>
-                        <SkipPreviousIcon sx={iconButtonStyles} />
+                    <IconButton onClick={handlePrevious} color='inherit' aria-label='Previous' sx={iconButtonStyles}>
+                        <SkipPreviousIcon sx={iconButtonStyles}/>
                     </IconButton>
                     <IconButton  onClick={handlePlayPause} color='inherit' aria-label={isPlaying ? 'Pause' : 'Play'} sx={iconButtonStyles}>
                         {renderPlayPauseIcon()}
                     </IconButton>
-                    <IconButton color='inherit' aria-label='Next' sx={iconButtonStyles}>
+                    <IconButton onClick={handleNext} color='inherit' aria-label='Next' sx={iconButtonStyles}>
                         <SkipNextIcon sx={{ fontSize: 'inherit' }} />
                     </IconButton>
                     <IconButton onClick={handleRepeat} color='inherit' aria-label='Repeat' sx={iconButtonStyles}>
