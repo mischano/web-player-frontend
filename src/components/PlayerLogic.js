@@ -21,22 +21,37 @@ const PlayerLogic = () => {
     }, [globalFetchResult, setGlobalFetchResult]);
 
     useEffect(() => {
-        if (isPlaying || playlist.length == 0) {
+        if (isPlaying || current || playlist.length === 0) {
             return;
         }
-        let newCurrent = playlist[0];
-        setCurrent(newCurrent);
+
+        let newAudioToPlay = playlist[0];
+        
+        setCurrent(newAudioToPlay);
         setIsPlaying(true);
         setPlaylist(playlist => playlist.slice(1));
-
-    }, [isPlaying, playlist]);
+    }, [playlist]);
 
     const playNextAudio = () => {
-        setCurrent(null);
-        setIsPlaying(false);
+        if (playlist.length === 0) {
+            setCurrent(null);
+            setIsPlaying(false);
+            return;
+        }
+        
+        let newCurrent = playlist[0];
+        setPlaylist(playlist => playlist.slice(1));
+        
+        setTimeout(() => {
+            setCurrent(newCurrent);
+            setIsPlaying(true);
+        }, 0);
     };
 
     const handlePlayPause = () => {
+        if (!current) {
+            return;
+        }
         setIsPlaying(!isPlaying);
     };
 
@@ -44,18 +59,19 @@ const PlayerLogic = () => {
         if (!current) {
             return;
         }
-        let remount = current;
 
+        let remount = current;
         setCurrent(null);
         setIsPlaying(false);
         
         setTimeout(() => {
             setCurrent(remount);
-            setIsPlaying(isPlaying);
+            setIsPlaying(true);
         }, 0);
     };
 
     const handleNext = () => {
+        setIsRepeatOn(false);
         playNextAudio();
     };
 
@@ -98,6 +114,7 @@ const PlayerLogic = () => {
                 url={current ? current.url : null} 
                 playing={isPlaying}
                 onEnded={playNextAudio}
+                loop={isRepeatOn}
                 controls={false}
             />
 
