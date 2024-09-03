@@ -1,10 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ChatBoxLogic from './components/ChatBoxLogic';
-import InputContainer from './components/InputContainer';
+import ChatBoxLogic from './components/Chat Box/ChatBoxLogic';
+import InputContainer from './components/Input Container/InputContainer';
 import { GlobalProvider } from './GlobalContext';
 // import AudioPlayer from './components/AudioPlayer'
-import PlayerLogic from './components/PlayerLogic';
+// import PlayerLogic from './components/PlayerLogic';
+import PlayerManager from './components/PlayerManager';
 import '../static/css/index.css';
 // import { Input } from '@mui/material';
 
@@ -16,6 +17,6 @@ root.render(
     <GlobalProvider>
         <InputContainer />
         <ChatBoxLogic />
-        <PlayerLogic />
+        <PlayerManager />
     </GlobalProvider>
 );

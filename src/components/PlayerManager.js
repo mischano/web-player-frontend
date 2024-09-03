@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import Player from './Player';
 import { useGlobal } from '../GlobalContext';
+import Playlist from './Playlist';
+import Player from './Player';
 
 
-const PlayerLogic = () => {
+const PlayerManager = () => {
     const { globalFetchResult, setGlobalFetchResult } = useGlobal();
     const [current, setCurrent] = useState(null);
     const [playlist, setPlaylist] = useState([]);
@@ -110,6 +111,9 @@ const PlayerLogic = () => {
                 handleVolumeChange={handleVolumeChange}
                 volume={volume}
             />
+            <Playlist
+                playlist={playlist} 
+            />
             <ReactPlayer
                 url={current ? current.url : null} 
                 playing={isPlaying}
@@ -122,4 +126,4 @@ const PlayerLogic = () => {
     );
 };
 
-export default PlayerLogic;
+export default PlayerManager;

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from 'axios';
 import { useGlobal } from "../GlobalContext";
 
 const AudioFetcher = ({ setLoading, setError, message }) => {
-  const { setGlobalFetchResult } = useGlobal();
-  const { setGlobalErrorMessage } = useGlobal();
+  const { setGlobalFetchResult, setGlobalErrorMessage } = useGlobal();
 
   useEffect(() => {
     if (message) {
@@ -36,7 +35,8 @@ const AudioFetcher = ({ setLoading, setError, message }) => {
 
 const fetchAudio = async (requestedAudio) => {
   if (!requestedAudio || typeof requestedAudio != 'string') {
-    throw new Error('Invalid text parameter');
+    setGlobalErrorMessage('Invalid text parameter');
+    // throw new Error('Invalid text parameter');
   }
 
   try {
@@ -46,7 +46,8 @@ const fetchAudio = async (requestedAudio) => {
     return response.data;
   } catch (err) {
     console.error('Error fetching data:', err);  
-    throw new Error('Failed to fetch the requested data.');  
+    setGlobalErrorMessage('Failed to fetch the requested data.');
+    // throw new Error('Failed to fetch the requested data.');  
   }
 }
 

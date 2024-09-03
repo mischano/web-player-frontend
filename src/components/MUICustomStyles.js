@@ -6,6 +6,43 @@ export const white ='#ffffffb6';
 export const green = '#26a69a';
 export const blue = '#29b6f6';
 
+export const customPaperStyles = {
+    sx:{ 
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'fixed',
+        top: '2%',
+        // left: '1%',
+        width: '100%',
+        height: '100%',
+        maxWidth: '30vw',
+        maxHeight: '80vh',
+        backgroundColor: '#000',
+        borderRadius: '20px',
+        overflowY: 'auto',
+        padding: '10px',
+        // outline: 'solid 2px #706969',
+    },
+};
+
+export const customTypographyStyles = {
+    variant:"body1",
+    sx:{
+        width: '90%',
+        margin: '0 auto',
+        marginLeft: '-3px',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word',
+        padding: '2px',
+        lineHeight: 1.2,
+        fontFamily: 'Fira Code, monospace',
+        fontSize: '13px',
+        fontWeight: 'normal',
+        overflowY: 'auto',
+    },
+};
+
+// Directly from ChatGPT. 
 export const CustomPaper = styled(Paper)({
         /* Customizing the scrollbar track */
     '::-webkit-scrollbar-track': {
@@ -31,39 +68,3 @@ export const CustomPaper = styled(Paper)({
         backgroundColor: '#ffffffb6', // Darker color when hovered
     },
 });
-
-export const customPaperStyles = {
-    sx:{ 
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'fixed',
-        top: '2%',
-        left: '1%',
-        width: '100%',
-        height: '100%',
-        maxWidth: '30vw',
-        maxHeight: '85vh',
-        backgroundColor: '#000',
-        borderRadius: '20px',
-        overflowY: 'auto',
-        padding: '10px',
-        // outline: 'solid 2px #706969',
-    },
-};
-
-export const customTypographyStyles = {
-    variant:"body1",
-    sx:{
-        width: '90%',
-        margin: '0 auto',
-        marginLeft: '-3px',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-        padding: '2px',
-        lineHeight: 1.2,
-        fontFamily: 'Fira Code, monospace',
-        fontSize: '13px',
-        fontWeight: 'normal',
-        overflowY: 'auto',
-    },
-};

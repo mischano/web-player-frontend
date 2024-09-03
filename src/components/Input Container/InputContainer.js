@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useGlobal } from '../GlobalContext';
-import AudioFetcher from './AudioFetcher';
-import "./InputContainer.css";
-
+import { useGlobal } from '../../GlobalContext';
+import AudioFetcher from '../AudioFetcher';
+import './InputContainer.css'
 
 const InputContainer = () => {
+    const { setGlobalMessage } = useGlobal();
     const [userInput, setUserInput] = useState('');
     const [message, setMessage] = useState('');
-    const { setGlobalMessage } = useGlobal();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false); // `loading` is set to true if audio is being fetched. False otherwise. 
     const [error, setError] = useState(null);
     
     //  * React state updates are sometimes optimized to ignore updates that don't actually change the state value. 
@@ -29,6 +28,7 @@ const InputContainer = () => {
         setUserInput(event.target.value);
     };
 
+    // If `Enter` key is pressed, handle the user input. 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             if (userInput.trim().length > 0) {
@@ -51,7 +51,7 @@ const InputContainer = () => {
                 placeholder="Type the name of the song and the artist, and hit `Enter`."
                 rows="4"
                 cols="50"
-                readOnly={loading}
+                readOnly={loading}    
             />
             <AudioFetcher 
                 setLoading={setLoading} 
