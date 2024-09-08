@@ -1,7 +1,7 @@
 import React from 'react';
-import { appBarStyles, toolBarStyles, boxStyles, iconButtonStyles } from './PlayerStyles';
-import { Box, IconButton, AppBar, Toolbar } from '@mui/material';
 import { PlayCircle, PauseCircle } from '@mui/icons-material';
+import { Box, IconButton, AppBar, Toolbar } from '@mui/material';
+import { appBarStyles, toolBarStyles, boxStyles, iconButtonStyles } from './PlayerStyles';
 // Icons below must be imported individually 
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import ShuffleOnIcon from '@mui/icons-material/ShuffleOn';
@@ -14,7 +14,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 // End. 
 
-const Player = ({
+const PlayerUI = ({
     isPlaying,
     isShuffle,
     isRepeatOn,
@@ -69,4 +69,4 @@ const Player = ({
     );
 };
 
-export default Player;
+export default PlayerUI;

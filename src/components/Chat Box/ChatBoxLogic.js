@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useGlobal } from '../../GlobalContext';
-import ChatBox from './ChatBox';
+import ChatBoxUI from './ChatBoxUI';
 import { white, red, blue, green } from '../MUICustomStyles';
 
 
@@ -54,7 +54,7 @@ const ChatBoxLogic = () => {
     };
 
     return (
-        <ChatBox
+        <ChatBoxUI
             chat={chat}
             oldChatSize={oldChatSize}
         />

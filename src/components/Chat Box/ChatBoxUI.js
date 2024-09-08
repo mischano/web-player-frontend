@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Paper, Typography } from '@mui/material';
 import { ReactTyped } from 'react-typed';
+import { Paper, Typography } from '@mui/material';
 import { customPaperStyles, customTypographyStyles } from '../MUICustomStyles';
 
 
-const ChatBox = ({
+const ChatBoxUI = ({
     chat,
     oldChatSize, // Refer to ChatBoxLogic.js
 }) => {
@@ -50,5 +50,5 @@ const ChatBox = ({
     );
 };
 
-export default ChatBox;
+export default ChatBoxUI;
  

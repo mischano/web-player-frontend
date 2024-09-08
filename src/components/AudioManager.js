@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { useGlobal } from '../GlobalContext';
 import Playlist from './Playlist';
-import Player from './Player';
+import PlayerUI from './Player/PlayerUI';
+import { useGlobal } from '../GlobalContext';
 
 
 const PlayerManager = () => {
@@ -98,7 +98,7 @@ const PlayerManager = () => {
         
     return (
         <div>
-            <Player
+            <PlayerUI
                 isPlaying={isPlaying}
                 isShuffle={isShuffle}
                 isRepeatOn={isRepeatOn}
