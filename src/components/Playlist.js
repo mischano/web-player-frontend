@@ -15,7 +15,7 @@ const Playlist = ({
     return (
         <Paper sx={{
             ...customPaperStyles.sx,
-            right: '1%',
+            right: 'calc(1% + 30wv + 10px)',
         }}
             variant={customPaperStyles.variant}
         >

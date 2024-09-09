@@ -1,20 +1,28 @@
 export const appBarStyles = {
     position:'fixed',
     sx: {
+        /* Positioning */
         top: 'auto', 
         bottom: 0, 
-        backgroundColor: 'transparent', 
-        boxShadow: 'none', 
-        width: '60%',
+        left: 'calc(1% + 30vw + 10px)', // Adjusted with Input Containers width. 
+        
+        /* Sizing */
+        width: '35%',
         maxWidth: '100%',
         minWidth: '300px',
         height: '10vh',
         maxHeight: '15vh',
         minHeight: '1vh',
-        right: '0%',
+        boxSizing:  'border-box',
+
+        /* Spacing */
         padding: 0,
         margin: 0,
-        // outline: 'solid 2px #706969',
+       
+        /* Apperance */
+        backgroundColor: 'transparent', 
+        boxShadow: 'none', 
+        outline: 'solid 2px #706969',
     },
 };
 

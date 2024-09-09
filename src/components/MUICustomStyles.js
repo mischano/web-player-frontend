@@ -12,7 +12,6 @@ export const customPaperStyles = {
         flexDirection: 'column',
         position: 'fixed',
         top: '2%',
-        // left: '1%',
         width: '100%',
         height: '100%',
         maxWidth: '30vw',
@@ -21,7 +20,7 @@ export const customPaperStyles = {
         borderRadius: '20px',
         overflowY: 'auto',
         padding: '10px',
-        // outline: 'solid 2px #706969',
+        outline: 'solid 2px #706969',
     },
 };
 
