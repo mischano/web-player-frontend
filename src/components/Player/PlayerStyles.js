@@ -7,9 +7,9 @@ export const appBarStyles = {
         left: 'calc(1% + 30vw + 10px)', // Adjusted with Input Containers width. 
         
         /* Sizing */
-        width: '35%',
+        width: '30%',
         maxWidth: '100%',
-        minWidth: '300px',
+        minWidth: '200px',
         height: '10vh',
         maxHeight: '15vh',
         minHeight: '1vh',
@@ -22,7 +22,7 @@ export const appBarStyles = {
         /* Apperance */
         backgroundColor: 'transparent', 
         boxShadow: 'none', 
-        outline: 'solid 2px #706969',
+        // outline: 'solid 2px #706969',
     },
 };
 
@@ -43,7 +43,7 @@ export const boxStyles = {
         display: 'flex',
         gap: { xs: '2px', sm: '4px', md: '6px', lg: '10px'},
         alignItems: 'top',
-        fontSize: { xs: 15, sm: 20, md: 25, lg: 35 },
+        fontSize: { xs: 12, sm: 17, md: 24, lg: 28 },
         height: '100%',
         color: '#d7ccc8',
     },

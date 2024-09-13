@@ -112,6 +112,7 @@ const PlayerManager = () => {
                 volume={volume}
             />
             <Playlist
+                current={current}
                 playlist={playlist} 
             />
             <ReactPlayer

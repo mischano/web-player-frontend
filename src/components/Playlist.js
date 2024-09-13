@@ -4,6 +4,7 @@ import { customPaperStyles, customTypographyStyles } from "./MUICustomStyles";
 import { white, red, blue, green } from './MUICustomStyles';
 
 const Playlist = ({
+        current,
         playlist
 }) => {
     // For scrolling effect. 
@@ -15,10 +16,21 @@ const Playlist = ({
     return (
         <Paper sx={{
             ...customPaperStyles.sx,
-            right: 'calc(1% + 30wv + 10px)',
+            left: 'calc(1% + 30vw + 10px)',
         }}
             variant={customPaperStyles.variant}
         >
+            <Typography
+                sx={{
+                    ...customTypographyStyles.sx,
+                    fontSize: '16px',
+                    fontWeigth: 'bold',
+                    color: green,
+                }}
+                variant={customTypographyStyles.variant}
+            >
+                {current ? 'Current:' : null}
+            </Typography>
             <Typography
                 sx={{
                     ...customTypographyStyles.sx,
