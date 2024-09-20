@@ -12,8 +12,8 @@ const root = createRoot(container);
 
 root.render(
     <GlobalProvider>
-        <InputContainer />
-        <ChatBoxLogic />
+        {/* <InputContainer /> */}
+        {/* <ChatBoxLogic /> */}
         <AudioManager />
     </GlobalProvider>
 );

@@ -1,7 +1,15 @@
 import React from 'react';
 import { PlayCircle, PauseCircle } from '@mui/icons-material';
 import { Box, IconButton, AppBar, Toolbar } from '@mui/material';
-import { appBarStyles, toolBarStyles, boxStyles, iconButtonStyles } from './PlayerStyles';
+import {
+    outterContainer, 
+    innerLeftContainer,
+    innerMiddleContainer, 
+    innerRightContainer, 
+    playerContainer, 
+    sliderContainer,
+    iconButtonStyles 
+} from './PlayerStyles';
 // Icons below must be imported individually 
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import ShuffleOnIcon from '@mui/icons-material/ShuffleOn';
@@ -42,9 +50,11 @@ const PlayerUI = ({
     }
 
     return (
-        <AppBar  {... appBarStyles}>
-            <Toolbar {... toolBarStyles}>
-                <Box {... boxStyles}>
+        <AppBar  {... outterContainer}>
+            <Toolbar {... innerLeftContainer}>
+            </Toolbar>
+            <Toolbar {... innerMiddleContainer}>
+                <Box {...playerContainer}>
                     <IconButton onClick={handleShuffle} color='inherit' aria-label={isShuffle ? 'shuffleOn' : 'shuffleOff'} sx={iconButtonStyles}>
                         {renderShuffleIcon()}
                     </IconButton>
@@ -60,10 +70,17 @@ const PlayerUI = ({
                     <IconButton onClick={handleRepeat} color='inherit' aria-label='Repeat' sx={iconButtonStyles}>
                         {renderRepeatOnOff()}
                     </IconButton>
+                    {/* <IconButton onClick={handleMute} color='inherit' aria-label='Mute-Unmute' sx={iconButtonStyles}>
+                        {renderVolumeIcon(volume)}
+                    </IconButton> */}
+                </Box>
+                <Box {... sliderContainer}>
                     <IconButton onClick={handleMute} color='inherit' aria-label='Mute-Unmute' sx={iconButtonStyles}>
                         {renderVolumeIcon(volume)}
                     </IconButton>
                 </Box>
+            </Toolbar>
+            <Toolbar {... innerRightContainer}>
             </Toolbar>
         </AppBar>
     );

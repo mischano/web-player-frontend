@@ -48,7 +48,7 @@ const InputContainer = () => {
                 value={userInput} 
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                placeholder="Type the name of the song and the artist, and hit `Enter`."
+                placeholder="Enter the song name"
                 rows="4"
                 cols="50"
                 readOnly={loading}    

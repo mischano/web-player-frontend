@@ -11,6 +11,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000000; 
+  background-color: #181818; 
+  /* background-color: #181818; */
   font-family: 'Fire Code', monospace;
 }

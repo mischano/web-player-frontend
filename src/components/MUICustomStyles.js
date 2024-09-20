@@ -27,7 +27,7 @@ export const customPaperStyles = {
         
         /* Apperance */
         backgroundColor: '#000',
-        // outline: 'solid 2px #706969',
+        outline: 'solid 2px #706969',
 
         /* Functionality */
         overflowY: 'auto',

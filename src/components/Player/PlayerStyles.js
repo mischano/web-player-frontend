@@ -1,55 +1,133 @@
-export const appBarStyles = {
+import { padding } from "@mui/system";
+
+export const outterContainer = {
     position:'fixed',
     sx: {
         /* Positioning */
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         top: 'auto', 
-        bottom: 0, 
-        left: 'calc(1% + 30vw + 10px)', // Adjusted with Input Containers width. 
+        bottom: 5, 
         
         /* Sizing */
-        width: '30%',
-        maxWidth: '100%',
-        minWidth: '200px',
-        height: '10vh',
-        maxHeight: '15vh',
-        minHeight: '1vh',
-        boxSizing:  'border-box',
+        width: '100%',
+        height: '18vh',
+        overflow: 'hidden',
 
         /* Spacing */
         padding: 0,
         margin: 0,
        
         /* Apperance */
-        backgroundColor: 'transparent', 
+        // backgroundColor: 'transparent', 
+        backgroundColor: '#1f1f1f',
         boxShadow: 'none', 
-        // outline: 'solid 2px #706969',
+        // outline: 'solid 1px #fc1c03',
     },
 };
-
-export const toolBarStyles = {
+export const innerLeftContainer = {
     sx:{
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: '100%',
-        height: 'auto',
+        /* Positioning */
+        
+        /* Sizing */
+        width: '25%',
+        height: '90%',
+        boxSizing: 'border-box',
+        flexGrow: 0,
+        
+        /* Spacing */
         padding: 0,
-        flexGrow: 1,
+        
+        /* Apperance */
+        outline: 'solid 1px #ecfc03',
     },
 };
 
-export const boxStyles = {
+export const innerRightContainer = {
     sx:{
+        /* Positioning */
+        
+        /* Sizing */
+        width: '20%',
+        height: '50%',
+        boxSizing: 'border-box',
+        flexGrow: 0,
+        
+        /* Spacing */
+        padding: 0,
+        
+        /* Apperance */
+        outline: 'solid 1px #ecfc03',
+    },
+};
+
+export const innerMiddleContainer = {
+    sx:{
+        /* Positioning */
         display: 'flex',
-        gap: { xs: '2px', sm: '4px', md: '6px', lg: '10px'},
-        alignItems: 'top',
-        fontSize: { xs: 12, sm: 17, md: 24, lg: 28 },
-        height: '100%',
+        flexDirection: 'column',
+        
+        /* Sizing */
+        width: '50%',
+        height: '90%',
+        boxSizing: 'border-box',
+        flexGrow: 0,
+        
+        /* Spacing */
+        padding: 0,
+        
+        /* Apperance */
+        outline: 'solid 1px #ecfc03',
+    },
+};
+
+export const playerContainer = {
+    sx:{
+        /* Positioning */
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 9,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        
+        /* Sizing */
+        width: '40%',
+        
+        /* Appearance */
         color: '#d7ccc8',
+        outline: 'solid 1px #377516',
+    },
+};
+
+export const sliderContainer = {
+    sx:{
+        /* Positioning */
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flex: 1,
+        
+        /* Sizing */
+        width: '70%',
+        
+        /* Appearance */
+        color: '#d7ccc8',
+        outline: 'solid 1px #377516',
     },
 };
 
 export const iconButtonStyles = {
-    fontSize: 'inherit', 
-    height: 'inherit',
+    /* Positioning */
+    // alignSelf: 'center',
+
+    /* Sizing */
+    // width: 'auto',
+    // maxHeight: '100%',
+    // maxWidth: '100%',
+    // fontSize: '70%', 
+    
+    /* Appearance */
+    outline: 'solid 1px #306969',
 };

@@ -111,17 +111,17 @@ const PlayerManager = () => {
                 handleVolumeChange={handleVolumeChange}
                 volume={volume}
             />
-            <Playlist
+            {/* <Playlist
                 current={current}
                 playlist={playlist} 
-            />
-            <ReactPlayer
+            /> */}
+            {/* <ReactPlayer
                 url={current ? current.url : null} 
                 playing={isPlaying}
                 onEnded={playNextAudio}
                 loop={isRepeatOn}
                 controls={false}
-            />
+            /> */}
 
         </div>
     );

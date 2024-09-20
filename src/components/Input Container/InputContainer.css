@@ -27,17 +27,23 @@
     overflow-y: hidden;
     outline: none;
 }
+@media (min-width: 2561px) {
+    #text-input {
+        font-size: 16px;
+        padding: 16px;
+    }
+}
 
 @media (max-width: 2560px) {
     #text-input {
-        font-size: 14px;
-        padding: 12px;
+        font-size: 15px;
+        padding: 15px;
     }
 }
 
 @media (max-width: 1920px) {
     #text-input {
-        font-size: 13px;
+        font-size: 16px;
         padding: 10px;
     }
 }
@@ -65,7 +71,7 @@
 
 @media (max-width: 700px) {
     #text-input {
-        font-size: 10px;
+        font-size: 13px;
         padding: 6px;
     }
 }
