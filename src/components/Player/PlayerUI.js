@@ -2,14 +2,17 @@ import React from 'react';
 import { PlayCircle, PauseCircle } from '@mui/icons-material';
 import { Box, IconButton, AppBar, Toolbar } from '@mui/material';
 import {
-    outterContainer, 
+    outterContainer,
     innerLeftContainer,
     innerMiddleContainer, 
     innerRightContainer, 
+    thumbnailStyles, 
+    currentAudioStyles,
     playerContainer, 
     sliderContainer,
-    iconButtonStyles 
+    iconButtonStyles, 
 } from './PlayerStyles';
+
 // Icons below must be imported individually 
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import ShuffleOnIcon from '@mui/icons-material/ShuffleOn';
@@ -52,6 +55,16 @@ const PlayerUI = ({
     return (
         <AppBar  {... outterContainer}>
             <Toolbar {... innerLeftContainer}>
+                <Box { ...thumbnailStyles}>
+                    <IconButton onClick={handleShuffle} color='inherit' aria-label={isShuffle ? 'shuffleOn' : 'shuffleOff'} sx={iconButtonStyles}>
+                        {renderShuffleIcon()}
+                    </IconButton>
+                </Box> 
+                <Box { ...currentAudioStyles}>
+                    <IconButton onClick={handleShuffle} color='inherit' aria-label={isShuffle ? 'shuffleOn' : 'shuffleOff'} sx={iconButtonStyles}>
+                        {renderShuffleIcon()}
+                    </IconButton>
+                </Box> 
             </Toolbar>
             <Toolbar {... innerMiddleContainer}>
                 <Box {...playerContainer}>
