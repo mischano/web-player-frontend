@@ -8,8 +8,8 @@ import {
     innerRightContainer, 
     thumbnailStyles, 
     currentAudioStyles,
-    playerContainer, 
-    sliderContainer,
+    playerControlStyles, 
+    seekBarSliderStyles,
     iconButtonStyles, 
 } from './PlayerStyles';
 
@@ -67,7 +67,7 @@ const PlayerUI = ({
                 </Box> 
             </Toolbar>
             <Toolbar {... innerMiddleContainer}>
-                <Box {...playerContainer}>
+                <Box {...playerControlStyles}>
                     <IconButton onClick={handleShuffle} color='inherit' aria-label={isShuffle ? 'shuffleOn' : 'shuffleOff'} sx={iconButtonStyles}>
                         {renderShuffleIcon()}
                     </IconButton>
@@ -87,7 +87,7 @@ const PlayerUI = ({
                         {renderVolumeIcon(volume)}
                     </IconButton> */}
                 </Box>
-                <Box {... sliderContainer}>
+                <Box {... seekBarSliderStyles}>
                     <IconButton onClick={handleMute} color='inherit' aria-label='Mute-Unmute' sx={iconButtonStyles}>
                         {renderVolumeIcon(volume)}
                     </IconButton>

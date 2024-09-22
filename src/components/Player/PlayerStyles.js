@@ -43,6 +43,37 @@ export const innerLeftContainer = {
     },
 };
 
+export const innerMiddleContainer = {
+    sx:{
+        /* Positioning */
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        
+        /* Sizing */
+        flexGrow: 3,
+        flexBasis: '40%',
+        maxWidth: '40%',
+        boxSizing: 'border-box',
+
+        /* Apperance */
+        outline: 'solid 1px #ecfc03',
+    },
+};
+
+export const innerRightContainer = {
+    sx:{
+        /* Sizing */
+        flexGrow: 1,
+        flexBasis: '20%',
+        maxWidth: '20%',
+        boxSizing: 'border-box',
+        
+        /* Apperance */
+        outline: 'solid 1px #ecfc03',
+    },
+};
+
 export const thumbnailStyles = {
     sx: {
         /* Positioning */
@@ -75,38 +106,7 @@ export const currentAudioStyles = {
     }
 }
 
-export const innerRightContainer = {
-    sx:{
-        /* Sizing */
-        flexGrow: 1,
-        flexBasis: '20%',
-        maxWidth: '20%',
-        boxSizing: 'border-box',
-        
-        /* Apperance */
-        outline: 'solid 1px #ecfc03',
-    },
-};
-
-export const innerMiddleContainer = {
-    sx:{
-        /* Positioning */
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        
-        /* Sizing */
-        flexGrow: 3,
-        flexBasis: '40%',
-        maxWidth: '40%',
-        boxSizing: 'border-box',
-
-        /* Apperance */
-        outline: 'solid 1px #ecfc03',
-    },
-};
-
-export const playerContainer = {
+export const playerControlStyles = {
     sx:{
         /* Positioning */
         display: 'flex',
@@ -118,13 +118,12 @@ export const playerContainer = {
     },
 };
 
-export const sliderContainer = {
+export const seekBarSliderStyles = {
     sx:{
         /* Positioning */
         display: 'flex',
         
         /* Appearance */
-        color: '#d7ccc8',
         outline: 'solid 1px #377516',
     },
 };
