@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
+import AudioController from './Bottom Bar/AudioController';
 import Playlist from './Playlist';
-import PlayerUI from './Player/PlayerUI';
 import { useGlobal } from '../GlobalContext';
 
 
@@ -98,7 +98,7 @@ const PlayerManager = () => {
         
     return (
         <div>
-            <PlayerUI
+            <AudioController
                 isPlaying={isPlaying}
                 isShuffle={isShuffle}
                 isRepeatOn={isRepeatOn}

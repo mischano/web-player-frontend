@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlayCircle, PauseCircle } from '@mui/icons-material';
-import { Box, IconButton, AppBar, Toolbar } from '@mui/material';
+import { AppBar, Toolbar, Box, IconButton } from '@mui/material';
 import {
     outterContainer,
     innerLeftContainer,
@@ -25,7 +25,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 // End. 
 
-const PlayerUI = ({
+const AudioController = ({
     isPlaying,
     isShuffle,
     isRepeatOn,
@@ -99,4 +99,4 @@ const PlayerUI = ({
     );
 };
 
-export default PlayerUI;
+export default AudioController;
