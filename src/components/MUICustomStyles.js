@@ -1,4 +1,4 @@
-import { boxSizing, styled } from "@mui/system";
+import { boxSizing, maxWidth, styled } from "@mui/system";
 import { Paper } from "@mui/material";
 
 export const red ='#ef5350';
@@ -7,19 +7,23 @@ export const green = '#26a69a';
 export const blue = '#29b6f6';
 
 export const customPaperStyles = {
+    position: 'fixed',
     sx:{ 
         /* Positioning */
         display: 'flex',
         flexDirection: 'column',
-        position: 'fixed',
-        top: '2%',
+        alignItems: 'start',
+        // flex: ,
+        flexGrow: 1,
+        // maxWidth: ,
+        boxSizing: 'border-box',
       
         /* Sizing */
-        width: '100%',
-        height: '100%',
-        maxWidth: '30vw',
-        maxHeight: '80vh',
-        boxSizing: 'border-box',
+        // width: '100%',
+        // height: '100%',
+        // maxWidth: '30vw',
+        // maxHeight: '80vh',
+        // boxSizing: 'border-box',
        
         /* Spacing */
         padding: '10px',

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
 
 
-const SearchBar = ({ width }) => {
+const SearchBar = () => {
     const [userInput, setUserInput] = useState('');
 
     return (
@@ -12,7 +12,7 @@ const SearchBar = ({ width }) => {
             label="What do you want to play?" 
             variant="outlined" 
             sx={{ 
-                flexGrow: 0.9,
+                flexGrow: 1.2,
                 backgroundColor: 'transparent',
                 outline: 'solid 1px #ecfc03',
             }}

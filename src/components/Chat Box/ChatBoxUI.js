@@ -27,7 +27,7 @@ const ChatBoxUI = ({
         // <CustomPaper {... customPaperStyles}>
         <Paper sx={{
             ...customPaperStyles.sx,
-            left: '1%',
+            // left: '1%',
 
         }}
         variant={customPaperStyles.variant}

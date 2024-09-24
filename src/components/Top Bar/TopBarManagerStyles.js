@@ -25,7 +25,7 @@ export const searchBarContainer = {
         display: 'flex',
         justifyContent: 'start',
         alignItems: 'center',
-        flexGrow: 0.15,
+        flexGrow: 0.13,
         boxSizing: 'border-box',
 
         /* Sizing */
@@ -41,7 +41,6 @@ export const buttonsContainer = {
     sx: {
         /* Positioning */
         display: 'flex',
-        left: '3%',
         
         /* Apperance */
         outline: 'solid 1px #ecfc03',
