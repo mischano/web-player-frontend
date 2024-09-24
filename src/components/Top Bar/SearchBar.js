@@ -9,7 +9,18 @@ const SearchBar = () => {
     return (
         <Box
             component="form"
-            sx={{ '& > :not(style)' : { m: 1, width: '25ch' } }}
+            sx={{
+                 '& > :not(style)' : { 
+                    
+                m: 1, 
+                width: '100%', 
+                // display: 'flex',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // flewGrow: 100,
+                // p: 1,
+                backgroundColor: '#ddf542',
+            } }}
             noValidate
             autoComplete="off"
         >
@@ -19,6 +30,8 @@ const SearchBar = () => {
                 variant="outlined" 
                 InputLabelProps={{
                     sx: {
+                        // flewGrow: 100,
+                        width: '100%'
                         // // Customize label text
                         // fontFamily: 'Courier, monospace',  // Change label font
                         // color: 'red',  // Change label color

@@ -10,7 +10,7 @@ export const appBarStyles = {
         top: 1,
 
         /* Size */
-        width: '98%',
+        width: '100%',
         height: '80px',
 
         /* Apperance */
@@ -23,9 +23,17 @@ export const searchBarContainer = {
     sx: {
         /* Positioning */
         display: 'flex',
-        
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexGrow: 0.3,
+        boxSizing: 'border-box',
+
+        /* Sizing */
+        // width: '30%',
+
         /* Apperance */
         outline: 'solid 1px #ecfc03',
+        backgroundColor: '#4251f5',
     }
 };
 
@@ -33,7 +41,7 @@ export const buttonsContainer = {
     sx: {
         /* Positioning */
         display: 'flex',
-        justifySelf: 'end',
+        left: '3%',
         
         /* Apperance */
         outline: 'solid 1px #ecfc03',
