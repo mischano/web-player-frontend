@@ -23,9 +23,9 @@ export const searchBarContainer = {
     sx: {
         /* Positioning */
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'start',
         alignItems: 'center',
-        flexGrow: 0.3,
+        flexGrow: 0.15,
         boxSizing: 'border-box',
 
         /* Sizing */
@@ -33,7 +33,7 @@ export const searchBarContainer = {
 
         /* Apperance */
         outline: 'solid 1px #ecfc03',
-        backgroundColor: '#4251f5',
+        // backgroundColor: '#4251f5',
     }
 };
 
