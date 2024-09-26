@@ -15,7 +15,7 @@ export const appBarStyles = {
 
         /* Apperance */
         backgroundColor: '#1f1f1f',
-        outline: 'solid 1px #fc1c03',
+        // outline: 'solid 1px #fc1c03',
     }
 };
 
@@ -32,7 +32,7 @@ export const searchBarContainer = {
         // width: '30%',
 
         /* Apperance */
-        outline: 'solid 1px #ecfc03',
+        // outline: 'solid 1px #ecfc03',
         // backgroundColor: '#4251f5',
     }
 };
@@ -43,6 +43,6 @@ export const buttonsContainer = {
         display: 'flex',
         
         /* Apperance */
-        outline: 'solid 1px #ecfc03',
+        // outline: 'solid 1px #ecfc03',
     }
 };

@@ -7,16 +7,9 @@ import {
     buttonsContainer,
 } from './TopBarManagerStyles.js';
 
-const TopBarManager = () => {
-    return (
-        <AppBar {... appBarStyles}>
-            <Toolbar {... searchBarContainer}>
-                <SearchBar />
-            </Toolbar>
-            <Toolbar {... buttonsContainer}>
-            </Toolbar>
-        </AppBar>
-    );
-};
+// const TopBarManager = () => {
+//     return (
+//     );
+// };
 
 export default TopBarManager;

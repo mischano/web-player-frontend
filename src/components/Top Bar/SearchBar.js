@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
+import { red } from '@mui/material/colors';
 
 
 const SearchBar = () => {
@@ -13,7 +14,7 @@ const SearchBar = () => {
             variant="outlined" 
             sx={{ 
                 flexGrow: 1.2,
-                backgroundColor: 'transparent',
+                backgroundColor: red[500],
                 outline: 'solid 1px #ecfc03',
             }}
         />

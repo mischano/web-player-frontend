@@ -19,11 +19,11 @@ export const customPaperStyles = {
         boxSizing: 'border-box',
       
         /* Sizing */
-        // width: '100%',
-        // height: '100%',
-        // maxWidth: '30vw',
-        // maxHeight: '80vh',
-        // boxSizing: 'border-box',
+        width: '100%',
+        height: '100%',
+        maxWidth: '30vw',
+        maxHeight: '80vh',
+        boxSizing: 'border-box',
        
         /* Spacing */
         padding: '10px',

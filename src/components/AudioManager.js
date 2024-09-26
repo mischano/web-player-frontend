@@ -114,8 +114,8 @@ const PlayerManager = () => {
             {/* <Playlist
                 current={current}
                 playlist={playlist} 
-            /> */}
-            {/* <ReactPlayer
+            /> 
+            <ReactPlayer
                 url={current ? current.url : null} 
                 playing={isPlaying}
                 onEnded={playNextAudio}

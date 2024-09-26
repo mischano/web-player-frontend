@@ -21,7 +21,7 @@ export const outterContainer = {
         /* Apperance */
         // backgroundColor: 'transparent', 
         backgroundColor: '#1f1f1f',
-        outline: 'solid 1px #fc1c03',
+        // outline: 'solid 1px #fc1c03',
     },
 };
 
@@ -39,7 +39,7 @@ export const innerLeftContainer = {
         boxSizing: 'border-box',
 
         /* Apperance */
-        outline: 'solid 1px #ecfc03',
+        // outline: 'solid 1px #ecfc03',
     },
 };
 
@@ -57,7 +57,7 @@ export const innerMiddleContainer = {
         boxSizing: 'border-box',
 
         /* Apperance */
-        outline: 'solid 1px #ecfc03',
+        // outline: 'solid 1px #ecfc03',
     },
 };
 
@@ -70,7 +70,7 @@ export const innerRightContainer = {
         boxSizing: 'border-box',
         
         /* Apperance */
-        outline: 'solid 1px #ecfc03',
+        // outline: 'solid 1px #ecfc03',
     },
 };
 
@@ -86,7 +86,7 @@ export const thumbnailStyles = {
         boxSizing: 'border-box',
         
         /* Appearance */
-        outline: 'solid 1px #377516',
+        // outline: 'solid 1px #377516',
     }
 };
 
@@ -102,7 +102,7 @@ export const currentAudioStyles = {
         boxSizing: 'border-box',
         
         /* Appearance */
-        outline: 'solid 1px #377516',
+        // outline: 'solid 1px #377516',
     }
 }
 
@@ -114,7 +114,7 @@ export const playerControlStyles = {
         justifyContent: 'space-evenly',
         
         /* Appearance */
-        outline: 'solid 1px #377516',
+        // outline: 'solid 1px #377516',
     },
 };
 
@@ -124,7 +124,7 @@ export const seekBarSliderStyles = {
         display: 'flex',
         
         /* Appearance */
-        outline: 'solid 1px #377516',
+        // outline: 'solid 1px #377516',
     },
 };
 
