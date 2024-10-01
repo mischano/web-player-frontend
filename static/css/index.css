@@ -4,7 +4,7 @@
   
   font-family: 'Fire Code', monospace;
 
-  /* outline: 1px solid #000000; */
+  /* outline: 1px solid white; */
   background-color: #181818; 
 }
 
@@ -21,9 +21,9 @@
   /* justify-content: space-between; */
   /* align-items: center; */
 
-  /* outline: 1px solid white; */
+  /* outline: 1px solid white;
   color: inherit;
-  /* background-color: red; */
+  background-color: red; */
 
 }
 
@@ -32,9 +32,9 @@
   justify-content: center;
   align-items: center;
   
-  /* outline: 1px solid white;
+  outline: 1px solid white;
   color: inherit;
-  background-color: green; */
+  background-color: green; 
 }
 
 .bottom-bar {
@@ -42,5 +42,8 @@
   justify-content: center;
   align-items: center;
   
+  outline: 1px solid white;
+  color: inherit;
+  background-color: blue; 
   
 }
