@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import TopBarManager from './components/Top Bar/TopBarManager';
+import TopBar from './components/Top Bar/TopBar';
+import MiddleBar from './components/Middle Bar/MiddleBar';
 import '../static/css/index.css';
 
 
@@ -11,11 +12,10 @@ const root = createRoot(container);
 root.render(
     <div className="main">
         <div className="top-bar">
-            {/* Top Container */}
-            <TopBarManager />
+            <TopBar/>
         </div>
         <div className="middle-bar">
-            Middle Container
+            <MiddleBar/>
         </div>
         <div className="bottom-bar">
             Lower Container

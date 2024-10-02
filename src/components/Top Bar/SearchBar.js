@@ -10,7 +10,7 @@ const SearchBar = () => {
             sx={{ 
                 flexGrow: 1,
                 border: '1px solid #ccc',
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
                 borderRadius: '10px',
                 // border: '1px solid #008000',
         }}/>

@@ -1,0 +1,50 @@
+.middle-bar-main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    flex-grow: 1;
+    outline: 1px solid pink;
+}
+
+.middle-bar-left-container {
+    display: flex;
+    flex-grow: 1;
+    max-width: 30%;
+    
+    /* outline: 1px solid white; */
+}
+
+.middle-bar-middle-container {
+    display: flex;
+    
+    flex-grow: 1;
+    max-width: 30%;
+    
+    outline: 1px solid white;
+}
+
+.middle-bar-right-container {
+    display: flex;
+    
+    flex-grow: 1;
+    max-width: 30%;
+    
+    outline: 1px solid white;
+}
+
+.custom-paper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 100%;
+
+    padding: 10px;
+    border-radius: 10px;
+
+    /* max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word; */
+
+    outline: solid 1px yellow;
+}

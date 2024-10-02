@@ -1,9 +1,8 @@
 #root {
-  width: 99vw;
-  height: 99vh;
+  width: 100vw;
+  height: 100vh;
   
   font-family: 'Fire Code', monospace;
-
   /* outline: 1px solid white; */
   background-color: #181818; 
 }
@@ -29,12 +28,12 @@
 
 .middle-bar {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   
-  outline: 1px solid white;
-  color: inherit;
-  background-color: green; 
+  /* outline: 1px solid white; */
+  /* color: inherit;  */
+  background-color: green;  
 }
 
 .bottom-bar {

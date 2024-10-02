@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import '../../../static/css/top.css';
 
 
-const TopBarManager = () => {
+const TopBar = () => {
     return (
         <div className="top-bar-main-container">
             <div className="top-bar-left-container">
@@ -19,4 +19,4 @@ const TopBarManager = () => {
     );
 };
 
-export default TopBarManager;
+export default TopBar;
