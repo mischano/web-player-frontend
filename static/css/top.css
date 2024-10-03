@@ -1,7 +1,7 @@
 .top-bar-main-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     
     flex-grow: 1;
     outline: 1px solid white;
@@ -9,7 +9,12 @@
 
 .top-bar-left-container {
     display: flex;
-    flex-grow: 0.2;
+    flex-direction: row;
+    justify-content: center;
+
+    flex-grow: 1;
+    max-width: 30%;
+    
     outline: 1px solid white;
 }
 
@@ -17,14 +22,16 @@
     display: flex;
    
     flex-grow: 1;
+    max-width: 30%;
 
     outline: 1px solid white;
 }
 
 .top-bar-right-container {
     display: flex;
-    flex-direction: row-reverse;
+    
     flex-grow: 1;
+    max-width: 30%;
 
     outline: 1px solid white;
 }

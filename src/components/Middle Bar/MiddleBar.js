@@ -6,9 +6,7 @@ const MiddleBar = () => {
     return (
         <div className="middle-bar-main-container">
             <div className="middle-bar-left-container">
-                {/* <div className="custom-paper"> */}
-                    <ChatUI />    
-                {/* </div> */}
+                <ChatUI />    
             </div>
             <div className="middle-bar-middle-container">
                 Middle Middle Bar
