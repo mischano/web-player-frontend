@@ -1,49 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import TextField from "@mui/material/TextField";
-import InputAdornment from '@mui/material/InputAdornment';
+import AudioFetcher from '../AudioFetcher';
+import { useGlobal } from '../../GlobalContext';
+import { textFieldStyles, inputLabelPropsStyles } from "./SearchBarStyles";
+
+
 const SearchBar = () => {
+    const { setGlobalMessage } = useGlobal();
+    const [userInput, setUserInput] = useState('');
+    const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(false); // `loading` is set to true if audio is being fetched. False otherwise. 
+    const [error, setError] = useState(null);
+
+    //  * React state updates are sometimes optimized to ignore updates that don't actually change the state value. 
+    //  * Ex: User entering the same input more than once. Since the state `message` is being set to the same value, 
+    //  * re-render is not being triggered. To ensure re-mount and re-render are triggered even if the same data is 
+    //  * entered, we use unique key that will help us to re-mount and re-render.  
+    const [key, setKey] = useState(0);  
+
+    useEffect(() => {
+        if (loading) {
+            setUserInput('Loading...');
+        } else {
+            setUserInput('');
+        }
+    }, [loading]);
+
+    const handleChange = (event) => {
+        setUserInput(event.target.value);
+    };
+
+    // If `Enter` key is pressed, handle the user input. 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            if (userInput.trim().length > 0) {
+                setMessage(userInput);
+                setGlobalMessage(userInput);
+                console.log('enter is pressed');
+            }
+            setUserInput('');
+            event.preventDefault();
+            setKey(prevKey => prevKey + 1);
+        }
+    };
+
     return (
         <TextField
-        label="What do you want to play?"
         id="outlined-start-adornment"
-        sx={{ 
-            m: 1, 
-            width: '40ch',
-            '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderColor: '#dedddb', // Default outline color
-                    borderWidth: '1.5px',
-                },
-                '&:hover fieldset': {
-                    borderColor: '#fbfcf8', // Outline color on hover
-                    borderWidth: '2px',
-                },
-                '&.Mui-focused fieldset': {
-                    borderColor: '#ffffff', // Outline color when focused
-                    borderWidth: '2.5px',
-                },
-                '& .MuiInputBase-input': {
-                    color: 'white', // Font color for input text
-                    fontFamily: "'Fira Code', monospace",
-                },
-            },
-        }}
-        InputLabelProps={{
-            style: { color: '#dedddb' }, // Default label color
-            sx: {
-              '&.Mui-focused': {
-                color: '#ffffff', // Label color when focused
-                fontFamily: "'Fira Code', monospace",
-                transform: 'scale(0.65)', // Adjust label position and scale when focused
-              },
-            },
-        }}
-        // slotProps={{
-        //   input: {
-        //     startAdornment: <InputAdornment position="start"></InputAdornment>,
-        //   },
-        // }}
-      />
+        label="What do you want to play?"
+        sx={textFieldStyles}
+        InputLabelProps={inputLabelPropsStyles}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        />
     );
 };
 

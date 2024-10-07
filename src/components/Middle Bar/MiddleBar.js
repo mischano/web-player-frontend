@@ -1,12 +1,13 @@
 import React from "react";
-import ChatUI from "./ChatUI";
+import Chat from "./Chat";
 import '../../../static/css/middle.css';
+
 
 const MiddleBar = () => {
     return (
         <div className="middle-bar-main-container">
             <div className="middle-bar-left-container">
-                <ChatUI />    
+                <Chat />
             </div>
             <div className="middle-bar-middle-container">
                 Middle Middle Bar

@@ -1,6 +1,6 @@
 import React from "react";
+import { ReactTyped } from "react-typed";
 import { Typography } from "@mui/material";
-import { fontSize, margin, maxWidth } from "@mui/system";
 import '../../../static/css/middle.css';
 
 
@@ -20,30 +20,27 @@ const ChatUI = ({
     chat, 
     oldChatSize,
 }) => {
-    
+    const renderTypingEffect = (item, index) =>
+        index === chat.lenght - 1
+            ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
+            : item.content;
+
     return (
         <div className="custom-paper">
-            <Typography
-                sx={{
-                    ... customTypography.sx,
-                }} 
-                variant={customTypography.variant}
-            >
-                {/* Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉  
-                Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉  
-                Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉  
-                Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉  
-                Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉   */}
-                Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉  
-            </Typography>
-            <Typography
-                sx={{
-                    ... customTypography.sx,
-                }} 
-                variant={customTypography.variant}
-            >
-                Nick Cave - Children 
-            </Typography>
+            {chat.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
+                chat.map((item, index) => (
+                    <Typography 
+                        key={item.id} 
+                        sx={{
+                            ...customTypography.sx,
+                            color: item.color,
+                        }} 
+                        variant={customTypography.variant}
+                    >
+                        {renderTypingEffect(item, index)}
+                    </Typography>
+                ))
+            ) : null }
         </div>
     );
 };
