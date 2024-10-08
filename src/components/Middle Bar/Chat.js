@@ -24,8 +24,14 @@ const Chat = () => {
             let cleanedMessage = replaceAmpresandWithAnd(globalMessage);
             
             setOldChatSize(chat.length);
-            addToChat('Requested', 'bold',green);
-            addToChat(cleanedMessage,'normal',white);
+            const message = [
+                ['Requested', 'bold', red],
+                [cleanedMessage,'normal',blue]
+            ];
+            addToChat(message);
+            
+            // addToChat('Requested', 'bold',red);
+            // addToChat(cleanedMessage,'normal',blue);
 
             setGlobalMessage('');
         }

@@ -36,7 +36,6 @@ const SearchBar = () => {
             if (userInput.trim().length > 0) {
                 setMessage(userInput);
                 setGlobalMessage(userInput);
-                console.log('enter is pressed');
             }
             setUserInput('');
             event.preventDefault();
