@@ -23,10 +23,28 @@ const Chat = () => {
         if (globalMessage && globalMessage.length > 0) {
             let cleanedMessage = replaceAmpresandWithAnd(globalMessage);
             
+            // {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
+            // const message = [
+            //     ['Requested', 'bold', red],
+            //     [cleanedMessage,'normal',blue],
+            // ];
+            
             setOldChatSize(chat.length);
             const message = [
-                ['Requested', 'bold', red],
-                [cleanedMessage,'normal',blue]
+                {
+                    id: uuidv4(),
+                    content: 'Requested:',
+                    size: '14px',
+                    weight: 'bold',
+                    color: red,
+                },
+                {
+                    id: uuidv4(),
+                    content: cleanedMessage,
+                    size: '14px',
+                    weight: 'normal',
+                    color: blue,
+                },
             ];
             addToChat(message);
             
@@ -47,13 +65,20 @@ const Chat = () => {
             addToChat(cleanedMessage, 'normal', white);
         }
     }, [globalFetchResult]);
-
-    const addToChat = (mesage, fontWeight, fontColor) => {
+    
+    const addToChat = (message) => {
         setChat(prevChat => [
             ...prevChat,
-            {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
+            message,
         ]);
     };
+
+    // const addToChat = (mesage, fontWeight, fontColor) => {
+    //     setChat(prevChat => [
+    //         ...prevChat,
+    //         {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
+    //     ]);
+    // };
 
     // `&` character causes `ReactTyped` component in ChatBox.js to crash. 
     // Hence, `&` is replaced with the word `and` below. 

@@ -8,10 +8,10 @@ const customTypography = {
     variant: 'body1',
     sx: {
         // padding: '10px',
-        width: '100%',
+        width: 'auto',
         maxWidth: '100%',
         wordBreak: 'break-all',
-        fontSize: '18px',
+        fontSize: '1rem',
         outline: 'solid 1px #706969',
     },
 };
@@ -28,17 +28,21 @@ const ChatUI = ({
     return (
         <div className="custom-paper">
             {chat.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
-                chat.map((item, index) => (
-                    <Typography 
-                        key={item.id} 
-                        sx={{
-                            ...customTypography.sx,
-                            color: item.color,
-                        }} 
-                        variant={customTypography.variant}
-                    >
-                        {renderTypingEffect(item, index)}
-                    </Typography>
+                chat.map((couple, coupleIndex) => (
+                    <div className="custom-paper-inner" key={coupleIndex}>
+                        {couple.map((item, index) => (
+                            <Typography
+                                // key={item.id}
+                                sx={{
+                                    ...customTypography.sx,
+                                    color: item.color,
+                                }}
+                                variant={customTypography.variant}
+                            >
+                                {renderTypingEffect(item, index)}
+                            </Typography>
+                        ))}
+                    </div>
                 ))
             ) : null }
         </div>
@@ -46,3 +50,13 @@ const ChatUI = ({
 };
 
 export default ChatUI;
+                    // <Typography 
+                    //     key={item.id} 
+                    //     sx={{
+                    //         ...customTypography.sx,
+                    //         color: item.color,
+                    //     }} 
+                    //     variant={customTypography.variant}
+                    // >
+                    //     {renderTypingEffect(item, index)}
+                    // </Typography>
