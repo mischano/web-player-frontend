@@ -1,63 +1,50 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ReactTyped } from "react-typed";
 import { Typography } from "@mui/material";
+import { customTypography, customTypography2, customTypography3 } from "./ChatUIStyles";
 import '../../../static/css/middle.css';
-import { height, maxHeight } from "@mui/system";
 
-
-const customTypography = {
-    variant: 'body1',
-    sx: {
-        flexShrink: 0,
-        width: 'auto',
-        
-        whiteSpace: 'nowrap',
-        marginRight: '5px',
-
-        fontSize: 'calc(.8rem + 0.3vw)',
-        // outline: 'solid 1px #e9f542',
-    },
-};
-
-const customTypography2 = {
-    variant: 'body1',
-    sx: {
-        flexGrow: 1,
-        
-        wordBreak: 'break-all',
-       
-        fontSize: 'calc(.8rem + 0.3vw)',
-        // outline: 'solid 1px #ebf702',
-    },
-};
-
-const customTypography3 = {
-    variant: 'body1',
-    sx: {
-        flexGrow: 1,
-        
-        wordBreak: 'break-all',
-       
-        fontSize: 'calc(.8rem + 0.3vw)',
-        // outline: 'solid 1px #ebf702',
-    },
-};
 
 const ChatUI = ({
-    chat, 
+    message, 
     oldChatSize,
 }) => {
-    const renderTypingEffect = (item, index) =>
-        index === chat.lenght - 1
-            ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
-            : item.content;
+    const customPaperUpperRef = useRef(null);
 
+    useEffect(() => {
+        if (customPaperUpperRef.current) {
+            const width = customPaperUpperRef.current.offsetWidth;
+            
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const font = window.getComputedStyle(customPaperUpperRef.current, null).getPropertyValue('font');
+            context.font = font;
+            console.log('font: ' + font);
+            console.log('width: ' + context.measureText('Request').width);
+        }
+
+        const handleResize = () => {
+            if (customPaperUpperRef.current) {
+                const width = customPaperUpperRef.current.offsetWidth;
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+
+    }, [message]);
+
+    const renderTypingEffect = (item, index) =>
+        index === message.lenght - 1
+        ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
+        : item.content;
+    
     return (
         <div className="chat-box">
-            {chat.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
-                chat.map((couple, coupleIndex) => (
+            {message.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
+                message.map((couple, coupleIndex) => (
                     <div className="chat-box-inner"> 
-                        <div className="custom-paper-upper" key={coupleIndex}>
+                        <div ref={customPaperUpperRef} className="custom-paper-upper" key={coupleIndex}>
                             <Typography
                                 sx={{
                                     ...customTypography.sx,
@@ -65,7 +52,8 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography.variant}
                             >
-                                {renderTypingEffect(couple[0], coupleIndex)}
+                                {/* renderTypingEffect(couple[0], coupleIndex) */}
+                                Box 1
                             </Typography>
                             <Typography
                                 sx={{
@@ -74,7 +62,7 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography2.variant}
                             >
-                                2402 Eva Ct, Campbell, California 95008, United States of America
+                                Box 2 
                                 {/* {renderTypingEffect(couple[1], coupleIndex)} */}
                             </Typography>
                         </div>
@@ -86,7 +74,8 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography3.variant}
                             >
-                                {renderTypingEffect(couple[1], coupleIndex)}
+                                Box 3
+                                {/* renderTypingEffect(couple[1], coupleIndex) */}
                             </Typography>
                         </div>
                     </div>
@@ -97,16 +86,3 @@ const ChatUI = ({
 };
 
 export default ChatUI;
-
-                        {/* {couple.map((item, index) => (
-                            <Typography
-                                // key={item.id}
-                                sx={{
-                                    ...customTypography.sx,
-                                    color: item.color,
-                                }}
-                                variant={customTypography.variant}
-                            >
-                                {renderTypingEffect(item, index)}
-                            </Typography>
-                        ))} */}

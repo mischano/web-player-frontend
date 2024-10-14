@@ -49,7 +49,7 @@
     padding: 10px;
     border-radius: 10px;
 
-    outline: solid 1px yellow;
+    outline: solid 1px white;
 }
 
 .chat-box-inner {
@@ -60,7 +60,9 @@
     flex-shrink: 1;
     flex-basis: auto;
 
-    /* outline: solid 1px black; */
+    padding: 5px;
+
+    outline: solid 1px black;
 }
 .custom-paper-upper {
     display: flex;
@@ -72,6 +74,8 @@
 
     max-width: 100%;
 
+    padding: 5px;
+    
     outline: solid 1px red;
 }
 
@@ -83,6 +87,8 @@
     flex-basis: auto;
 
     max-width: 100%;
+    
+    padding: 5px;
 
-    outline: solid 1px darkmagenta;
+    outline: solid 1px purple;
 }

@@ -88,7 +88,7 @@ const Chat = () => {
 
     return (
         <ChatUI
-            chat={chat}
+            message={chat}
             oldChatSize={oldChatSize}
         />
     );
