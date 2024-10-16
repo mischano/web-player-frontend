@@ -22,7 +22,7 @@ const Chat = () => {
     useEffect(() => {
         if (globalMessage && globalMessage.length > 0) {
             let cleanedMessage = replaceAmpresandWithAnd(globalMessage);
-            
+            let words = cleanedMessage.split(' '); 
             // {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
             // const message = [
             //     ['Requested', 'bold', red],
@@ -40,7 +40,7 @@ const Chat = () => {
                 },
                 {
                     id: uuidv4(),
-                    content: cleanedMessage,
+                    content: words,
                     size: '14px',
                     weight: 'normal',
                     color: blue,

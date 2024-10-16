@@ -17,7 +17,10 @@ export const customTypography2 = {
     sx: {
         flexGrow: 1,
         
-        wordBreak: 'break-all',
+        // wordBreak: 'break-all',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
 
         fontSize: 'calc(.8rem + 0.3vw)',
         outline: 'solid 1px #ebf702',

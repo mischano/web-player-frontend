@@ -10,6 +10,7 @@ const ChatUI = ({
     oldChatSize,
 }) => {
     const [chatBoxWidth, setChatBoxWidth] = useState(0);
+    let idx = 0;
     // const [chat, setChat] = useState([]);
 
     const customPaperUpperRef = useRef(null);
@@ -18,20 +19,12 @@ const ChatUI = ({
         if (customPaperUpperRef.current) {
             let width = customPaperUpperRef.current.offsetWidth;
             setChatBoxWidth(width);
-            // console.log(width);
         }
         
-        // if (message.length > 0) {
-        //     // ['Nick', 'Cave', '-', 'Children']
-        //     let words = message[1].content.split(' ');
-        //     setChat(words);
-        // }
-
         const handleResize = () => {
             if (customPaperUpperRef.current) {
                 let width = customPaperUpperRef.current.offsetWidth;
                 setChatBoxWidth(width);
-                // console.log(width);
             }
         };
 
@@ -47,23 +40,26 @@ const ChatUI = ({
     
     const printChat = (str) => {
         let currentLine = '';
-        let i = 0;
-
+        idx = 0;
         const chat = str.split(' ');
-        for (; i < chat.length; i++) {
-            const nextLine = currentLine + chat[i] + ' ';
+        
+        for (; idx < chat.length; idx++) {
+            const nextLine = currentLine + (idx === chat.length - 1 ? chat[idx] : chat[idx] + ' ');
             const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
-         
-            if (currentTextWidth < chatBoxWidth) {
+            
+            if (currentTextWidth < chatBoxWidth - 5) {
                 currentLine = nextLine;
             } else {
                 break;
             }
         }
-        console.log(currentLine);
-
         return currentLine;
     };
+
+    const printRest = (str) => {
+        let chat = str.split(' ');
+        return chat.slice(idx).join(' ');
+    }
 
     const measureTextWidth = (text, element) => {
         if (element) {
@@ -112,7 +108,7 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography3.variant}
                             >
-                                Box 3
+                                {printRest(couple[1].content)}
                                 {/* renderTypingEffect(couple[1], coupleIndex) */}
                             </Typography>
                         </div>
