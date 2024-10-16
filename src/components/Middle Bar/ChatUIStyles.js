@@ -18,7 +18,7 @@ export const customTypography2 = {
         flexGrow: 1,
         
         wordBreak: 'break-all',
-       
+
         fontSize: 'calc(.8rem + 0.3vw)',
         outline: 'solid 1px #ebf702',
     },

@@ -9,23 +9,29 @@ const ChatUI = ({
     message, 
     oldChatSize,
 }) => {
+    const [chatBoxWidth, setChatBoxWidth] = useState(0);
+    // const [chat, setChat] = useState([]);
+
     const customPaperUpperRef = useRef(null);
 
     useEffect(() => {
         if (customPaperUpperRef.current) {
-            const width = customPaperUpperRef.current.offsetWidth;
-            
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            const font = window.getComputedStyle(customPaperUpperRef.current, null).getPropertyValue('font');
-            context.font = font;
-            console.log('font: ' + font);
-            console.log('width: ' + context.measureText('Request').width);
+            let width = customPaperUpperRef.current.offsetWidth;
+            setChatBoxWidth(width);
+            // console.log(width);
         }
+        
+        // if (message.length > 0) {
+        //     // ['Nick', 'Cave', '-', 'Children']
+        //     let words = message[1].content.split(' ');
+        //     setChat(words);
+        // }
 
         const handleResize = () => {
             if (customPaperUpperRef.current) {
-                const width = customPaperUpperRef.current.offsetWidth;
+                let width = customPaperUpperRef.current.offsetWidth;
+                setChatBoxWidth(width);
+                // console.log(width);
             }
         };
 
@@ -39,12 +45,43 @@ const ChatUI = ({
         ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
         : item.content;
     
+    const printChat = (str) => {
+        let currentLine = '';
+        let i = 0;
+
+        const chat = str.split(' ');
+        for (; i < chat.length; i++) {
+            const nextLine = currentLine + chat[i] + ' ';
+            const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
+         
+            if (currentTextWidth < chatBoxWidth) {
+                currentLine = nextLine;
+            } else {
+                break;
+            }
+        }
+        console.log(currentLine);
+
+        return currentLine;
+    };
+
+    const measureTextWidth = (text, element) => {
+        if (element) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const font = window.getComputedStyle(element, null).getPropertyValue('font');
+            context.font = font;
+            return context.measureText(text).width;
+        }
+        return 0;
+    };
+
     return (
         <div className="chat-box">
             {message.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
                 message.map((couple, coupleIndex) => (
                     <div className="chat-box-inner"> 
-                        <div ref={customPaperUpperRef} className="custom-paper-upper" key={coupleIndex}>
+                        <div className="custom-paper-upper" key={coupleIndex}>
                             <Typography
                                 sx={{
                                     ...customTypography.sx,
@@ -52,17 +89,18 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography.variant}
                             >
-                                {/* renderTypingEffect(couple[0], coupleIndex) */}
                                 Box 1
+                                {/* renderTypingEffect(couple[0], coupleIndex) */}
                             </Typography>
                             <Typography
+                                ref={customPaperUpperRef}    
                                 sx={{
                                     ...customTypography2.sx,
                                     color: couple[1].color,
                                 }}
                                 variant={customTypography2.variant}
                             >
-                                Box 2 
+                                {printChat(couple[1].content)}
                                 {/* {renderTypingEffect(couple[1], coupleIndex)} */}
                             </Typography>
                         </div>
