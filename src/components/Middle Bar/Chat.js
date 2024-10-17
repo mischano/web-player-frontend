@@ -21,32 +21,28 @@ const Chat = () => {
 
     useEffect(() => {
         if (globalMessage && globalMessage.length > 0) {
-            let cleanedMessage = replaceAmpresandWithAnd(globalMessage);
-            let words = cleanedMessage.split(' '); 
-            // {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
-            // const message = [
-            //     ['Requested', 'bold', red],
-            //     [cleanedMessage,'normal',blue],
-            // ];
+            let cleanedMessage = replaceAmpresandWithAnd(globalMessage).split(' ');
+            // let words = cleanedMessage.split(' '); 
             
             setOldChatSize(chat.length);
             const message = [
                 {
                     id: uuidv4(),
-                    content: 'Requested:',
+                    content: ['Requested:'],
                     size: '14px',
                     weight: 'bold',
                     color: red,
                 },
                 {
                     id: uuidv4(),
-                    content: words,
+                    content: cleanedMessage,
                     size: '14px',
                     weight: 'normal',
                     color: blue,
-                },
+                }
             ];
-            addToChat(message);
+            setChat(message);
+            // addToChat(message);
             
             // addToChat('Requested', 'bold',red);
             // addToChat(cleanedMessage,'normal',blue);
@@ -88,7 +84,7 @@ const Chat = () => {
 
     return (
         <ChatUI
-            message={chat}
+            newMessage={chat}
             oldChatSize={oldChatSize}
         />
     );

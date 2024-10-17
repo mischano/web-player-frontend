@@ -3,17 +3,19 @@ import { ReactTyped } from "react-typed";
 import { Typography } from "@mui/material";
 import { customTypography, customTypography2, customTypography3 } from "./ChatUIStyles";
 import '../../../static/css/middle.css';
+import { render } from "react-dom";
 
 
 const ChatUI = ({
-    message, 
+    newMessage, 
     oldChatSize,
 }) => {
+    const [chat, setChat] = useState([]);
     const [chatBoxWidth, setChatBoxWidth] = useState(0);
-    let idx = 0;
-    // const [chat, setChat] = useState([]);
-
+    
     const customPaperUpperRef = useRef(null);
+    
+    let idx = 0;
 
     useEffect(() => {
         if (customPaperUpperRef.current) {
@@ -31,35 +33,16 @@ const ChatUI = ({
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
 
-    }, [message]);
+    }, [newMessage]);
 
-    const renderTypingEffect = (item, index) =>
-        index === message.lenght - 1
-        ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
-        : item.content;
+    // const renderTypingEffect = (item, index) =>
+    //     index === newMessage.lenght - 1
+    //     ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
+    //     : item.content;
     
-    const printChat = (str) => {
-        let currentLine = '';
-        idx = 0;
-        const chat = str.split(' ');
-        
-        for (; idx < chat.length; idx++) {
-            const nextLine = currentLine + (idx === chat.length - 1 ? chat[idx] : chat[idx] + ' ');
-            const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
-            
-            if (currentTextWidth < chatBoxWidth - 5) {
-                currentLine = nextLine;
-            } else {
-                break;
-            }
-        }
-        return currentLine;
-    };
-
-    const printRest = (str) => {
-        let chat = str.split(' ');
-        return chat.slice(idx).join(' ');
-    }
+    // const renderTypingEffect = (item) => {
+    //     <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
+    // };
 
     const measureTextWidth = (text, element) => {
         if (element) {
@@ -72,48 +55,116 @@ const ChatUI = ({
         return 0;
     };
 
+    const printPrompt = (message, isTyped) => {
+        let str = message.slice(0).join(' ');
+        if (isTyped) {
+            return <ReactTyped strings={[str]} typeSpeed={5} backSpeed={5} loop={false} />
+        }
+        return str;
+    };
+
+    const printFirstLine = (message, isTyped) => {
+        idx = 0;
+        let currentLine = '';
+        for (; idx < message.length; idx++) {
+            const nextLine = currentLine + (idx === message.length - 1 ? message[idx] : message[idx] + ' ');
+            const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
+            if (currentTextWidth < chatBoxWidth - 5) {
+                currentLine = nextLine;
+            } else {
+                break;
+            }
+        }
+        
+        if (isTyped) {
+            return <ReactTyped strings={[currentLine]} typeSpeed={5} backSpeed={5} loop={false} />
+        }
+
+        return currentLine;
+    };
+
+    const printRest = (message, isTyped) => {
+        let str = message.slice(idx).join(' ');
+        if (isTyped) {
+            return <ReactTyped strings={[str]} typeSpeed={5} backSpeed={5} loop={false} />
+        }
+        return str;
+    };
+
     return (
         <div className="chat-box">
-            {message.length > oldChatSize ? (  // Re-render only if the `chat has new messages.
-                message.map((couple, coupleIndex) => (
-                    <div className="chat-box-inner"> 
-                        <div className="custom-paper-upper" key={coupleIndex}>
+            {chat.map((item, index) => (
+                    <div className="chat-box-inner" key={index}> 
+                        <div className="custom-paper-upper">
                             <Typography
                                 sx={{
                                     ...customTypography.sx,
-                                    color: couple[0].color,
+                                    color: item[0].color,
                                 }}
                                 variant={customTypography.variant}
                             >
-                                Box 1
-                                {/* renderTypingEffect(couple[0], coupleIndex) */}
+                                {printPrompt(item[0].content, false)}
                             </Typography>
                             <Typography
                                 ref={customPaperUpperRef}    
                                 sx={{
                                     ...customTypography2.sx,
-                                    color: couple[1].color,
+                                    color: item[1].color,
                                 }}
                                 variant={customTypography2.variant}
                             >
-                                {printChat(couple[1].content)}
-                                {/* {renderTypingEffect(couple[1], coupleIndex)} */}
+                                {printFirstLine(item[1].content, false)}
                             </Typography>
                         </div>
                         <div className="custom-paper-lower">
                             <Typography
                                 sx={{
                                     ...customTypography3.sx,
-                                    color: couple[1].color,
+                                    color: item[1].color,
                                 }}
                                 variant={customTypography3.variant}
                             >
-                                {printRest(couple[1].content)}
-                                {/* renderTypingEffect(couple[1], coupleIndex) */}
+                                {printRest(item[1].content, false)}
                             </Typography>
                         </div>
                     </div>
                 ))
+            }
+            {newMessage.length > 0 ? (
+                <div className="chat-box-inner">
+                    <div className="custom-paper-upper">
+                        <Typography
+                            sx={{
+                                ...customTypography.sx,
+                                color: newMessage[0].color,
+                            }}
+                            variant={customTypography.variant}
+                        >
+                            {printPrompt(newMessage[0].content, true)}
+                        </Typography>
+                        <Typography
+                            ref={customPaperUpperRef}    
+                            sx={{
+                                ...customTypography2.sx,
+                                color: newMessage[1].color,
+                            }}
+                            variant={customTypography2.variant}
+                        >
+                            {printFirstLine(newMessage[1].content, true)}
+                        </Typography>
+                    </div>
+                    <div className="custom-paper-lower">
+                        <Typography
+                            sx={{ 
+                                ... customTypography3.sx,
+                                color: newMessage[1].color,
+                            }}
+                            variant={customTypography3.variant}
+                        >
+                            {printRest(newMessage[1].content, true)}
+                        </Typography>
+                    </div>
+                </div>
             ) : null }
         </div>
     );
