@@ -14,17 +14,10 @@ const Chat = () => {
     const { globalFetchResult } = useGlobal();
     const [chat, setChat] = useState([]);
 
-    // Below hook allows the `ReactTyped` component to apply 'typing effect' only
-    // to the latest message typed.
-    // Ex: If `oldChatSize` size is different from `chat`, new message was added to chat.
-    const [oldChatSize, setOldChatSize] = useState(0);
-
     useEffect(() => {
         if (globalMessage && globalMessage.length > 0) {
             let cleanedMessage = replaceAmpresandWithAnd(globalMessage).split(' ');
-            // let words = cleanedMessage.split(' '); 
             
-            setOldChatSize(chat.length);
             const message = [
                 {
                     id: uuidv4(),
@@ -41,33 +34,28 @@ const Chat = () => {
                     color: blue,
                 }
             ];
-            setChat(message);
-            // addToChat(message);
             
-            // addToChat('Requested', 'bold',red);
-            // addToChat(cleanedMessage,'normal',blue);
-
+            setChat(message);
             setGlobalMessage('');
         }
     },[globalMessage, setGlobalMessage]);
 
-    useEffect(() => {
-        if (globalFetchResult && !globalFetchResult.error) {
-            let cleanedMessage = `${replaceAmpresandWithAnd(globalFetchResult.title)}\n\n`;
+    // useEffect(() => {
+    //     if (globalFetchResult && !globalFetchResult.error) {
+    //         let cleanedMessage = `${replaceAmpresandWithAnd(globalFetchResult.title)}\n\n`;
             
-            setOldChatSize(chat.length);
 
-            addToChat('Added', 'bold', blue);
-            addToChat(cleanedMessage, 'normal', white);
-        }
-    }, [globalFetchResult]);
+    //         addToChat('Added', 'bold', blue);
+    //         addToChat(cleanedMessage, 'normal', white);
+    //     }
+    // }, [globalFetchResult]);
     
-    const addToChat = (message) => {
-        setChat(prevChat => [
-            ...prevChat,
-            message,
-        ]);
-    };
+    // const addToChat = (message) => {
+    //     setChat(prevChat => [
+    //         ...prevChat,
+    //         message,
+    //     ]);
+    // };
 
     // const addToChat = (mesage, fontWeight, fontColor) => {
     //     setChat(prevChat => [
@@ -85,7 +73,6 @@ const Chat = () => {
     return (
         <ChatUI
             newMessage={chat}
-            oldChatSize={oldChatSize}
         />
     );
 };

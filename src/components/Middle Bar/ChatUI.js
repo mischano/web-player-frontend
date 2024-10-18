@@ -3,24 +3,34 @@ import { ReactTyped } from "react-typed";
 import { Typography } from "@mui/material";
 import { customTypography, customTypography2, customTypography3 } from "./ChatUIStyles";
 import '../../../static/css/middle.css';
-import { render } from "react-dom";
 
 
-const ChatUI = ({
+const ChatUI =  ({
     newMessage, 
-    oldChatSize,
 }) => {
+    const [intermediateMessage, setIntermediateMessage] = useState([]);
     const [chat, setChat] = useState([]);
     const [chatBoxWidth, setChatBoxWidth] = useState(0);
+    const [isCommandDonePrinting, setIsCommandDonePrinting] = useState(false);
+    const [isFirstLineDonePrinting, setIsFirstLineDonePrinting] = useState(false);
+    const [isDonePrinting, setIsDonePrinting] = useState(false);
     
     const customPaperUpperRef = useRef(null);
-    
-    let idx = 0;
+
+    let wordCount = 0;
 
     useEffect(() => {
+        if (newMessage.length > 0) {
+            console.log('new message!');
+            setIntermediateMessage(newMessage);
+        }
+
         if (customPaperUpperRef.current) {
             let width = customPaperUpperRef.current.offsetWidth;
             setChatBoxWidth(width);
+
+            setIsCommandDonePrinting(false);
+            setIsFirstLineDonePrinting(false);
         }
         
         const handleResize = () => {
@@ -35,14 +45,12 @@ const ChatUI = ({
 
     }, [newMessage]);
 
-    // const renderTypingEffect = (item, index) =>
-    //     index === newMessage.lenght - 1
-    //     ? <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
-    //     : item.content;
-    
-    // const renderTypingEffect = (item) => {
-    //     <ReactTyped key={item.id} strings={[item.content]} typeSpeed={5} backSpeed={5} loop={false} />
-    // };
+    useEffect (() => {
+        if (isCommandDonePrinting && isFirstLineDonePrinting && isDonePrinting) {
+            setChat((prevChat) => [...prevChat, newMessage]);
+            setIntermediateMessage(null);
+        }
+    }, [isCommandDonePrinting, isFirstLineDonePrinting, isDonePrinting]);
 
     const measureTextWidth = (text, element) => {
         if (element) {
@@ -55,45 +63,47 @@ const ChatUI = ({
         return 0;
     };
 
-    const printPrompt = (message, isTyped) => {
-        let str = message.slice(0).join(' ');
-        if (isTyped) {
-            return <ReactTyped strings={[str]} typeSpeed={5} backSpeed={5} loop={false} />
-        }
-        return str;
-    };
-
-    const printFirstLine = (message, isTyped) => {
-        idx = 0;
-        let currentLine = '';
-        for (; idx < message.length; idx++) {
-            const nextLine = currentLine + (idx === message.length - 1 ? message[idx] : message[idx] + ' ');
-            const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
-            if (currentTextWidth < chatBoxWidth - 5) {
-                currentLine = nextLine;
-            } else {
-                break;
+    const printCommand = (message, isTyped) => {
+            let words = message.slice(0).join(' ');
+            if (isTyped) {
+                return (
+                    <ReactTyped strings={[words]} typeSpeed={10} backSpeed={1} loop={false} onComplete={() => setIsCommandDonePrinting(true)}/>
+                );
             }
-        }
-        
-        if (isTyped) {
-            return <ReactTyped strings={[currentLine]} typeSpeed={5} backSpeed={5} loop={false} />
-        }
-
-        return currentLine;
+            return words;  
     };
 
-    const printRest = (message, isTyped) => {
-        let str = message.slice(idx).join(' ');
+    const printTheFirstLine = (message, isTyped) => {
+            wordCount = 0;
+            let currentLine = '';
+            for (; wordCount < message.length; wordCount++) {
+                const nextLine = currentLine + (wordCount === message.length - 1 ? message[wordCount] : message[wordCount] + ' ');
+                const currentTextWidth = measureTextWidth(nextLine, customPaperUpperRef.current);
+                if (currentTextWidth < chatBoxWidth - 5) {
+                    currentLine = nextLine;
+                } else {
+                    break;
+                }
+            }
+            if (isTyped) {
+                return (
+                    <ReactTyped strings={[currentLine]} typeSpeed={10} backSpeed={1} loop={false} onComplete={() => {setIsFirstLineDonePrinting(true)}}/>
+                );
+            }
+            return currentLine;
+    };
+
+    const printMessageTheRest = (message, isTyped) => {
+        let words = message.slice(wordCount).join(' ');
         if (isTyped) {
-            return <ReactTyped strings={[str]} typeSpeed={5} backSpeed={5} loop={false} />
+            return <ReactTyped strings={[words]} typeSpeed={10} backSpeed={5} loop={false} onComplete={() => {setIsDonePrinting(true)}}/>
         }
-        return str;
+        return words;
     };
 
     return (
         <div className="chat-box">
-            {chat.map((item, index) => (
+            {chat.length > 0 ? (chat.map((item, index) => (
                     <div className="chat-box-inner" key={index}> 
                         <div className="custom-paper-upper">
                             <Typography
@@ -103,17 +113,16 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography.variant}
                             >
-                                {printPrompt(item[0].content, false)}
+                                {printCommand(item[0].content, false)}
                             </Typography>
                             <Typography
-                                ref={customPaperUpperRef}    
                                 sx={{
                                     ...customTypography2.sx,
                                     color: item[1].color,
                                 }}
                                 variant={customTypography2.variant}
                             >
-                                {printFirstLine(item[1].content, false)}
+                                {printTheFirstLine(item[1].content, false)}
                             </Typography>
                         </div>
                         <div className="custom-paper-lower">
@@ -124,46 +133,47 @@ const ChatUI = ({
                                 }}
                                 variant={customTypography3.variant}
                             >
-                                {printRest(item[1].content, false)}
+                                {printMessageTheRest(item[1].content, false)}
                             </Typography>
                         </div>
                     </div>
-                ))
+                ))) 
+                : null
             }
-            {newMessage.length > 0 ? (
+            {intermediateMessage.length > 0 ? (
                 <div className="chat-box-inner">
                     <div className="custom-paper-upper">
                         <Typography
                             sx={{
                                 ...customTypography.sx,
-                                color: newMessage[0].color,
+                                color: intermediateMessage[0].color,
                             }}
                             variant={customTypography.variant}
                         >
-                            {printPrompt(newMessage[0].content, true)}
+                            {printCommand(intermediateMessage[0].content, true)}
                         </Typography>
                         <Typography
                             ref={customPaperUpperRef}    
                             sx={{
                                 ...customTypography2.sx,
-                                color: newMessage[1].color,
+                                color: intermediateMessage[1].color,
                             }}
                             variant={customTypography2.variant}
                         >
-                            {printFirstLine(newMessage[1].content, true)}
+                            {isCommandDonePrinting ? printTheFirstLine(intermediateMessage[1].content, true) : null}
                         </Typography>
                     </div>
                     <div className="custom-paper-lower">
                         <Typography
                             sx={{ 
                                 ... customTypography3.sx,
-                                color: newMessage[1].color,
+                                color: intermediateMessage[1].color,
                             }}
                             variant={customTypography3.variant}
                         >
-                            {printRest(newMessage[1].content, true)}
+                            {isFirstLineDonePrinting ? printMessageTheRest(intermediateMessage[1].content, true) : null}
                         </Typography>
-                    </div>
+                    </div> 
                 </div>
             ) : null }
         </div>
