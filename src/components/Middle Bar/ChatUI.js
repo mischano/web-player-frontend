@@ -7,7 +7,7 @@ const ChatUI =  ({
     newMessage, 
 }) => {
     const [chat, setChat] = useState([]);
-    const [isTyped, setIsTyped] = useState(false);
+    const [isDone, setIsDone] = useState(false);
 
     useEffect(() => {
         if (newMessage && newMessage.length > 0) {
@@ -15,40 +15,48 @@ const ChatUI =  ({
                 ...prevChat,
                 newMessage,
             ]);
-            setIsTyped(false);
+            setIsDone(false);
         } 
     }, [newMessage]);
 
     return (
         <div className="chat-box">
             {chat.map((item, index) => (
-                    <div className="chat-box-inner" key={index}> 
-                        <div className="custom-paper-upper">
-                            {chat.length - 1 === index ? 
-                                <p style={{ wordBreak: 'break-word', whiteSpace: 'normal', width: '100%' }}>
-                                    <span style={{color: item[0].color}}>
-                                        <ReactTyped strings={item[0].content} typeSpeed={10} backSpeed={5} loop={false} showCursor={false} />
-                                    </span>&nbsp;
-                                    <span style={{
-                                        color: item[1].color, 
-                                        }}>
-                                        <ReactTyped strings={[item[1].content.join(' ')]} typeSpeed={10} backSpeed={5} loop={false} showCursor={false} />
-                                    </span>
-                                </p>
-                                : 
-                                <p style={{ wordBreak: 'break-word', whiteSpace: 'normal', width: '100%' }}>
-                                    <span style={{color: item[0].color}}>
-                                        {item[0].content}
-                                    </span>&nbsp;
-                                    <span style={{
-                                        color: item[1].color, 
-                                        }}>
-                                        {item[1].content.join(' ')}
-                                    </span>
-                                </p>
-                            }
-                        </div>
-                    </div>
+                <div className="chat-box-block" key={index}> 
+                    {chat.length - 1 === index ? (
+                        <p className="chat-paragraph">
+                            <span className="chat-paragraph-header">
+                                <ReactTyped 
+                                    strings={item[0].content} 
+                                    typeSpeed={10} backSpeed={5} 
+                                    loop={false} 
+                                    showCursor={false} 
+                                    onComplete={() => {setIsDone(true)}}
+                                />
+                            </span>
+                            &nbsp;
+                            {isDone ? (
+                                <span className="chat-paragraph-body">
+                                    <ReactTyped 
+                                        strings={[item[1].content.join(' ')]} 
+                                        typeSpeed={10} 
+                                        backSpeed={5} 
+                                        loop={false} 
+                                        showCursor={false} />
+                                </span>
+                            ) : null}
+                        </p>
+                    ) : (
+                        <p className="chat-paragraph">
+                            <span className="chat-paragraph-header">
+                                {item[0].content}
+                            </span>&nbsp;
+                            <span className="chat-paragraph-body">
+                                {item[1].content.join(' ')}
+                            </span>
+                        </p>
+                    )}
+                </div>
             ))}   
         </div>
     );

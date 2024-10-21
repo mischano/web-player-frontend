@@ -4,7 +4,7 @@
     justify-content: space-around;
     
     flex-grow: 1;
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }
 
 .top-bar-left-container {
@@ -15,7 +15,7 @@
     flex-grow: 1;
     max-width: 30%;
     
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }
 
 .top-bar-middle-container {
@@ -24,7 +24,7 @@
     flex-grow: 1;
     max-width: 30%;
 
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }
 
 .top-bar-right-container {
@@ -33,5 +33,5 @@
     flex-grow: 1;
     max-width: 30%;
 
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }

@@ -4,7 +4,7 @@
     justify-content: space-around;
     align-items: center;
     flex-grow: 1;
-    outline: 1px solid pink;
+    /* outline: 1px solid pink; */
 }
 
 .middle-bar-left-container {
@@ -25,7 +25,7 @@
     max-height: 90%;
     min-height: 90%; 
     
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }
 
 .middle-bar-right-container {
@@ -36,7 +36,7 @@
     max-height: 90%;
     min-height: 90%; 
     
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
 }
 
 .chat-box {
@@ -48,11 +48,11 @@
 
     padding: 10px;
     border-radius: 10px;
-
-    outline: solid 1px white;
+    
+    outline: solid 2px whitesmoke;
 }
 
-.chat-box-inner {
+.chat-box-block {
     display: flex;
     flex-direction: column;
 
@@ -60,34 +60,44 @@
     flex-shrink: 1;
     flex-basis: auto;
 
-    padding: 5px;
+    margin: 0;
+    padding: 0;
 
-    outline: solid 1px black;
+    margin-bottom: 10px;
+    /* outline: solid 1px black; */
 }
-.custom-paper-upper {
-    display: flex;
-    flex-direction: row;
 
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-
-    max-width: 100%;
-
-    padding: 5px;
+.chat-paragraph {
+    width: 100%;
     
-    outline: solid 1px red;
+    margin: 0;
+    padding: 0;
+
+    word-break: break-word;
+    white-space: normal;
+    line-height: 1.2;
 }
-.custom-paper-lower {
-    display: flex;
-    
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
 
-    max-width: 100%;
-    
-    padding: 5px;
+.chat-paragraph-header {
+    font-weight: bold;
+    font-size: 16px;
 
-    outline: solid 1px purple;
+    color: mintcream;
+    /* color: mistyrose; */
+    /* color: lightsalmon */
+    /* color: blanchedalmond */
+    /* color: lightcoral; */
+    /* text-shadow: 0.5px 0.5px 0.5px lightcoral;  */
+}
+
+.chat-paragraph-body {
+    font-weight: normal;
+    font-style: italic;
+    
+    color: mintcream;
+    /* color: snow */
+    /* color: floralwhite; */
+    /* color: ghostwhite; */
+    /* color: bisque; */
+    /* text-shadow: 0.5px 0.5px 0.5px lightcoral;  */
 }

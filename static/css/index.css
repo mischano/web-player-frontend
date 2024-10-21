@@ -1,9 +1,16 @@
+body, p {
+  font-family: 'Fire Code', monospace;
+  font-size: 16px;
+}
+
 #root {
   width: 100vw;
   height: 100vh;
   
   font-family: 'Fire Code', monospace;
+  
   /* outline: 1px solid white; */
+  color: snow;
   background-color: #181818; 
 }
 
@@ -33,7 +40,7 @@
   
   /* outline: 1px solid white; */
   /* color: inherit;  */
-  background-color: green;  
+  /* background-color: green;   */
 }
 
 .bottom-bar {
@@ -41,8 +48,7 @@
   justify-content: center;
   align-items: center;
   
-  outline: 1px solid white;
-  color: inherit;
-  background-color: blue; 
+  outline: 1px solid whitesmoke;
+  /* background-color: blue;  */
   
 }
