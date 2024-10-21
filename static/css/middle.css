@@ -49,7 +49,7 @@
     padding: 10px;
     border-radius: 10px;
     
-    outline: solid 2px whitesmoke;
+    outline: solid 2px lightgray;
 }
 
 .chat-box-block {
@@ -82,7 +82,7 @@
     font-weight: bold;
     font-size: 16px;
 
-    color: mintcream;
+    color: lightcoral;
     /* color: mistyrose; */
     /* color: lightsalmon */
     /* color: blanchedalmond */
@@ -92,9 +92,9 @@
 
 .chat-paragraph-body {
     font-weight: normal;
-    font-style: italic;
+    font-style: normal;
     
-    color: mintcream;
+    color: #ffffff;
     /* color: snow */
     /* color: floralwhite; */
     /* color: ghostwhite; */
