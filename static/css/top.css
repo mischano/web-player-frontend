@@ -10,7 +10,7 @@
 .top-bar-left-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
 
     flex-grow: 1;
     max-width: 30%;

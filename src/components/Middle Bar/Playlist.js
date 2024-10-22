@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Paper, Typography } from "@mui/material";
-import { customPaperStyles, customTypographyStyles } from "./MUICustomStyles";
-import { white, red, blue, green } from './MUICustomStyles';
+import { customPaperStyles, customTypographyStyles } from "../MUICustomStyles";
+import { white, red, blue, green } from '../MUICustomStyles';
 
 const Playlist = ({
         current,

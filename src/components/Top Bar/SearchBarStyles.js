@@ -17,6 +17,7 @@ export const textFieldStyles = {
         '& .MuiInputBase-input': {
             color: 'white', // Font color for input text
             fontFamily: "'Fira Code', monospace",
+            backgroundColor: '#1f1f1f',
         },
     },
 };

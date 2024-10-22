@@ -8,7 +8,6 @@ import { textFieldStyles, inputLabelPropsStyles } from "./SearchBarStyles";
 const SearchBar = () => {
     const { setGlobalMessage } = useGlobal();
     const [userInput, setUserInput] = useState('');
-    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false); // `loading` is set to true if audio is being fetched. False otherwise. 
     const [error, setError] = useState(null);
 
@@ -32,25 +31,30 @@ const SearchBar = () => {
 
     // If `Enter` key is pressed, handle the user input. 
     const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            if (userInput.trim().length > 0) {
-                setMessage(userInput);
-                setGlobalMessage(userInput);
-            }
-            setUserInput('');
-            event.preventDefault();
-            setKey(prevKey => prevKey + 1);
+        if (event.key !== 'Enter') {
+            return;
         }
+        event.preventDefault();
+        if (userInput.trim().length > 0) {
+            setGlobalMessage(userInput);
+        }
+        setUserInput('');
+        setKey(prevKey => prevKey + 1);
     };
 
     return (
         <TextField
-        id="outlined-start-adornment"
-        label="What do you want to play?"
-        sx={textFieldStyles}
-        InputLabelProps={inputLabelPropsStyles}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
+            id="outlined-start-adornment"
+            label="What do you want to play?"
+            sx={textFieldStyles}
+            InputLabelProps={inputLabelPropsStyles}
+            value={userInput}
+            key={key}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            // InputProps={{
+            //     readOnly: loading,
+            // }}
         />
     );
 };

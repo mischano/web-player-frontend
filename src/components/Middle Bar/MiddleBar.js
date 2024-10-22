@@ -11,6 +11,7 @@ const MiddleBar = () => {
             </div>
             <div className="middle-bar-middle-container">
                 Middle Middle Bar
+                {/* <Playlist /> */}
             </div>
             <div className="middle-bar-right-container">
                 Middle Right Bar
