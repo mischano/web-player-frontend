@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
-import AudioFetcher from '../AudioFetcher';
 import { useGlobal } from '../../GlobalContext';
 import { textFieldStyles, inputLabelPropsStyles } from "./SearchBarStyles";
 
 
 const SearchBar = () => {
-    const { setGlobalMessage } = useGlobal();
+    const { setGlobalUserMessage } = useGlobal();
     const [userInput, setUserInput] = useState('');
     const [loading, setLoading] = useState(false); // `loading` is set to true if audio is being fetched. False otherwise. 
     const [error, setError] = useState(null);
@@ -36,7 +35,7 @@ const SearchBar = () => {
         }
         event.preventDefault();
         if (userInput.trim().length > 0) {
-            setGlobalMessage(userInput);
+            setGlobalUserMessage(userInput);
         }
         setUserInput('');
         setKey(prevKey => prevKey + 1);

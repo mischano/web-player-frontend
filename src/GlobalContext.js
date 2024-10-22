@@ -4,6 +4,8 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
     // Message that the user enters. 
+    const [globalUserMessage, setGlobalUserMessage] = useState('');
+    // Message that the user enters. 
     const [globalMessage, setGlobalMessage] = useState('');
     // Result of fetched user message.
     const [globalFetchResult, setGlobalFetchResult] = useState('');
@@ -12,7 +14,8 @@ export function GlobalProvider({ children }) {
 
     return (
         <GlobalContext.Provider value=
-        {{ 
+        {{
+            globalUserMessage, setGlobalUserMessage, 
             globalMessage, setGlobalMessage, 
             globalFetchResult, setGlobalFetchResult, 
             globalErrorMessage, setGlobalErrorMessage 
