@@ -4,7 +4,7 @@ import '../../../static/css/middle.css';
 
 
 const ChatUI =  ({
-    newMessage, 
+    newMessage,
 }) => {
     const [chat, setChat] = useState([]);
     const [isDone, setIsDone] = useState(false);
@@ -25,7 +25,7 @@ const ChatUI =  ({
                 <div className="chat-box-block" key={index}> 
                     {chat.length - 1 === index ? (
                         <p className="chat-paragraph">
-                            <span className="chat-paragraph-header">
+                            <span className={item[0].className}>
                                 <ReactTyped 
                                     strings={item[0].content} 
                                     typeSpeed={10} backSpeed={5} 
@@ -36,7 +36,7 @@ const ChatUI =  ({
                             </span>
                             &nbsp;
                             {isDone ? (
-                                <span className="chat-paragraph-body">
+                                <span className={item[1].className}>
                                     <ReactTyped 
                                         strings={[item[1].content.join(' ')]} 
                                         typeSpeed={10} 
@@ -48,10 +48,10 @@ const ChatUI =  ({
                         </p>
                     ) : (
                         <p className="chat-paragraph">
-                            <span className="chat-paragraph-header">
+                            <span className={item[0].className}>
                                 {item[0].content}
                             </span>&nbsp;
-                            <span className="chat-paragraph-body">
+                            <span className={item[1].className}>
                                 {item[1].content.join(' ')}
                             </span>
                         </p>

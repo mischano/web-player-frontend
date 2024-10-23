@@ -4,6 +4,7 @@ import { GlobalProvider } from './GlobalContext';
 import TopBar from './components/Top Bar/TopBar';
 import MiddleBar from './components/Middle Bar/MiddleBar';
 import '../static/css/index.css';
+import AudioFetch from './components/AudioFetch';
 
 
 const container = document.getElementById('root');
@@ -20,6 +21,7 @@ root.render(
                 <MiddleBar/>
             </div>
             <div className="bottom-bar">
+                <AudioFetch />
                 Lower Container
             </div>
         </div>

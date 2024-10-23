@@ -5,10 +5,8 @@ import { textFieldStyles, inputLabelPropsStyles } from "./SearchBarStyles";
 
 
 const SearchBar = () => {
-    const { setGlobalUserMessage } = useGlobal();
+    const { isLoading, setGlobalUserMessage } = useGlobal();
     const [userInput, setUserInput] = useState('');
-    const [loading, setLoading] = useState(false); // `loading` is set to true if audio is being fetched. False otherwise. 
-    const [error, setError] = useState(null);
 
     //  * React state updates are sometimes optimized to ignore updates that don't actually change the state value. 
     //  * Ex: User entering the same input more than once. Since the state `message` is being set to the same value, 
@@ -17,12 +15,12 @@ const SearchBar = () => {
     const [key, setKey] = useState(0);  
 
     useEffect(() => {
-        if (loading) {
-            setUserInput('Loading...');
+        if (isLoading) {
+            setUserInput('Wait...');
         } else {
             setUserInput('');
         }
-    }, [loading]);
+    }, [isLoading]);
 
     const handleChange = (event) => {
         setUserInput(event.target.value);
@@ -51,9 +49,9 @@ const SearchBar = () => {
             key={key}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            // InputProps={{
-            //     readOnly: loading,
-            // }}
+            InputProps={{
+                readOnly: isLoading,
+            }}
         />
     );
 };

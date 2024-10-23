@@ -3,66 +3,122 @@ import { v4 as uuidv4 } from 'uuid';
 import { useGlobal } from "../../GlobalContext";
 import ChatUI from "./ChatUI";
 
-const red ='#ef5350';
-const white ='#ffffffb6';
-const green = '#26a69a';
-const blue = '#29b6f6';
 
 const Chat = () => {
-    const { globalMessage, setGlobalMessage } = useGlobal();
-    const {globalErrorMessage, setGlobalErrorMessage } = useGlobal();
-    const { globalFetchResult } = useGlobal();
     const [chat, setChat] = useState([]);
+    
+    const {
+        globalUserMessage, globalErrorMessage, globalFetchResult, globalIsFetchSuccess,
+        setIsLoading, setGlobalErrorMessage,
+    } = useGlobal();
 
     useEffect(() => {
-        if (globalMessage && globalMessage.length > 0) {
-            let cleanedMessage = replaceAmpresandWithAnd(globalMessage).split(' ');
-            
-            const message = [
-                {
-                    id: uuidv4(),
-                    content: ['Requested:'],
-                    size: '14px',
-                    weight: 'bold',
-                    color: red,
-                },
-                {
-                    id: uuidv4(),
-                    content: cleanedMessage,
-                    size: '14px',
-                    weight: 'normal',
-                    color: blue,
-                }
-            ];
-            
-            setChat(message);
-            setGlobalMessage('');
+        if (!globalUserMessage || globalUserMessage.length <= 0) {
+            return;
         }
-    },[globalMessage, setGlobalMessage]);
+        
+        let cleanedMessage = replaceAmpresandWithAnd(globalUserMessage).split(' ');
+        const message = [
+            {
+                id: uuidv4(),
+                className: 'chat-paragraph-header-requested',
+                content: ['Requested:'],
+            },
+            {
+                id: uuidv4(),
+                className: 'chat-paragraph-body',
+                content: cleanedMessage,
+            }
+        ];
+        setIsLoading(true); 
+        setChat(message);
+
+    },[globalUserMessage]);
+    
+    useEffect(() => {
+        let cleanedMessage, message;
+        let content1, content2, class1, class2;
+        if (globalIsFetchSuccess) {
+            if (!globalFetchResult || globalFetchResult.length <= 0) {
+                return;
+            }
+            cleanedMessage = replaceAmpresandWithAnd(globalFetchResult.title).split(' ');
+            class1 = 'chat-paragraph-header-added'; content1 = ['Added:'];
+            class2 = 'chat-paragraph-body'; content2 = cleanedMessage;
+        } else {
+            if (!globalErrorMessage || globalErrorMessage.length <= 0) {
+                return;
+            }
+            cleanedMessage = replaceAmpresandWithAnd(globalErrorMessage).split(' ');
+            class1 = 'chat-paragraph-header-added'; content1 = ['Added:'];
+            class2 = 'chat-paragraph-body'; content2 = cleanedMessage;
+        }
+        message = [
+            {
+                id: uuidv4(),
+                className: class1,
+                content: content1,
+            },
+            {
+                id: uuidv4(),
+                className: class2,
+                content: content2,
+            }
+        ]
+        setChat(message)
+        setIsLoading(false);
+
+    }, [globalIsFetchSuccess]);
 
     // useEffect(() => {
-    //     if (globalFetchResult && !globalFetchResult.error) {
-    //         let cleanedMessage = `${replaceAmpresandWithAnd(globalFetchResult.title)}\n\n`;
-            
-
-    //         addToChat('Added', 'bold', blue);
-    //         addToChat(cleanedMessage, 'normal', white);
+    //     if (!globalFetchResult) {
+    //         return;
     //     }
-    // }, [globalFetchResult]);
-    
-    // const addToChat = (message) => {
-    //     setChat(prevChat => [
-    //         ...prevChat,
-    //         message,
-    //     ]);
-    // };
 
-    // const addToChat = (mesage, fontWeight, fontColor) => {
-    //     setChat(prevChat => [
-    //         ...prevChat,
-    //         {id: uuidv4(), content: mesage, size: '14px', weight: fontWeight, color: fontColor},
-    //     ]);
-    // };
+    //     let cleanedMessage = replaceAmpresandWithAnd(globalFetchResult.title).split(' ');
+    //     const message = [
+    //         {
+    //             id: uuidv4(),
+    //             class: 'chat-paragraph-header-added',
+    //             content: ['Added:'],
+    //         },
+    //         {
+    //             id: uuidv4(),
+    //             class: 'chat-paragraph-body',
+    //             content: cleanedMessage,
+    //         }
+    //     ];
+    //     setIsLoading(false);
+    //     setChat(message);
+
+    // }, [globalFetchResult]);
+
+    // useEffect(() => {
+    //     if (!globalErrorMessage || globalErrorMessage.length <= 0) {
+    //         return;
+    //     }
+
+    //     let cleanedMessage = replaceAmpresandWithAnd(globalErrorMessage).split(' ');
+    //     const message = [
+    //         {
+    //             id: uuidv4(),
+    //             content: ['Error:'],
+    //             size: '14px',
+    //             weight: 'bold',
+    //             color: red,
+    //         },
+    //         {
+    //             id: uuidv4(),
+    //             content: cleanedMessage,
+    //             size: '14px',
+    //             weight: 'normal',
+    //             color: blue,
+    //         }
+    //     ];
+    //     setChat(message);
+    //     setGlobalErrorMessage('');
+
+    // }, [globalErrorMessage, setGlobalErrorMessage])
 
     // `&` character causes `ReactTyped` component in ChatBox.js to crash. 
     // Hence, `&` is replaced with the word `and` below. 

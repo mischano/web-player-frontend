@@ -79,26 +79,37 @@
     line-height: 1.2;
 }
 
-.chat-paragraph-header {
-    font-weight: bold;
-    font-size: 16px;
+.chat-paragraph-header-requested {
+    font-weight: normal;
+    font-size: 15px;
 
-    color: lightcoral;
-    /* color: mistyrose; */
-    /* color: lightsalmon */
-    /* color: blanchedalmond */
-    /* color: lightcoral; */
-    /* text-shadow: 0.5px 0.5px 0.5px lightcoral;  */
+    color: whitesmoke;
+    text-shadow: 0.1px 0.1px 0.1px red;
+}
+
+.chat-paragraph-header-added {
+    font-weight: normal;
+    font-size: 15px;
+
+    color: whitesmoke;
+    text-shadow: 0.1px 0.1px 0.1px chartreuse;
 }
 
 .chat-paragraph-body {
     font-weight: normal;
+    font-size: 15px;
     font-style: normal;
     
     color: #ffffff;
-    /* color: snow */
-    /* color: floralwhite; */
-    /* color: ghostwhite; */
-    /* color: bisque; */
-    /* text-shadow: 0.5px 0.5px 0.5px lightcoral;  */
+    text-shadow: 0.1px 0.1px 0.1px cornsilk;
 }
+
+/**
+    POSSIBLE COLOR COMBINATIONS: 
+    color: snow;
+    text-shadow: 0.1px 0.1px 0.1px red;
+
+    color: whitesmoke;
+    text-shadow: 0.1px 0.1px 0.1px magenta;
+
+**/
