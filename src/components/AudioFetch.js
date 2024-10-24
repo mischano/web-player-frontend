@@ -4,8 +4,7 @@ import axios from "axios";
 
 const AudioFetch = () => {
     const { 
-        globalUserMessage, setIsLoading, setGlobalUserMessage, setGlobalIsFetchSuccess, 
-        setGlobalFetchResult, setGlobalErrorMessage 
+        globalUserMessage, setGlobalFetchResult, setGlobalErrorMessage, setIsLoading
     } = useGlobal();
 
     useEffect(() => {
@@ -14,24 +13,19 @@ const AudioFetch = () => {
         }
 
         const audioFetcher = async () => {
+            setIsLoading(true);
             try {
                 const fetchResult = await fetchAudio(globalUserMessage);
                 if (fetchResult.error) {
-                    console.log('fetch.error');
                     setGlobalErrorMessage(fetchResult.error);
-                    setGlobalIsFetchSuccess(false);
                 } else {
-                    console.log('else');
-                    setGlobalIsFetchSuccess(true);
                     setGlobalFetchResult(fetchResult); 
                 }
             } catch (err) {
-                console.log('err');
-                setGlobalErrorMessage('Error fetching audio');
-                setGlobalIsFetchSuccess(false);
-            } finally {
-                console.log('finally');
-                setGlobalUserMessage('');
+                console.log('Unexpected error in audioFetcher:', err);
+                setGlobalErrorMessage('An unexpected error occured. I think you are cooked.');
+            } 
+            finally {
                 setIsLoading(false);
             }
         }
@@ -48,15 +42,19 @@ const fetchAudio = async (req) => {
     try {
         const response = await axios.get(`http://localhost:8000/api/search-audio-url/`, {
             params: { query: req },
-            timeout: 30000
+            timeout: 10000 // 10 seconds wait time. 
         });
+
         return response.data;
     } catch (err) {
-        if (err.code === 'ECONNABORTED') {
+        if (err.response) {
+            return { error: `${err.response.data.message}` || `Error: ${err.response.status} - ${err.response.statusText}` }
+        }
+        if (err.code === 'ENCONNABORTED') {
             return { error: 'Request timed out.' };
         }
-        return { error: 'Failed to fetch the requested data.' };
+        return { error: err.message || 'Failed to fetch the requested data.' }
     }
-}
+};
 
 export default AudioFetch;

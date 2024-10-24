@@ -6,8 +6,6 @@ export function GlobalProvider({ children }) {
     // User entered message.
     const [globalUserMessage, setGlobalUserMessage] = useState('');
     
-    // Set to true if the fetch was successful; false otherwise.
-    const [globalIsFetchSuccess, setGlobalIsFetchSuccess] = useState(false);
     // Fetch result content. 
     const [globalFetchResult, setGlobalFetchResult] = useState('');
     
@@ -21,7 +19,6 @@ export function GlobalProvider({ children }) {
         <GlobalContext.Provider value=
         {{
             globalUserMessage, setGlobalUserMessage, 
-            globalIsFetchSuccess, setGlobalIsFetchSuccess, 
             globalFetchResult, setGlobalFetchResult,
             globalErrorMessage, setGlobalErrorMessage,
             isLoading, setIsLoading,

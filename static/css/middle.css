@@ -95,6 +95,14 @@
     text-shadow: 0.1px 0.1px 0.1px chartreuse;
 }
 
+.chat-paragraph-header-error {
+    font-weight: normal;
+    font-size: 15px;
+
+    color: whitesmoke;
+    text-shadow: 0.1px 0.1px 0.1px magenta;
+}
+
 .chat-paragraph-body {
     font-weight: normal;
     font-size: 15px;
